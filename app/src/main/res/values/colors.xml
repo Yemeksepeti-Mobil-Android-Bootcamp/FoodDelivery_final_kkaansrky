@@ -7,4 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <!--Login Fragment Colors-->
+    <color name="login">#1FCC79</color>
+    <color name="google">#FF5842</color>
+    <color name="main_back">#252529</color>
+    <color name="main_text">#8A8A8F</color>
+    <color name="selected_dot_color">#949498</color>
+    <color name="default_dot_color">#3F3F43</color>
+
 </resources>

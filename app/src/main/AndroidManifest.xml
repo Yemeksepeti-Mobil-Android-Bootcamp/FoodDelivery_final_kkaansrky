@@ -11,6 +11,9 @@
         android:theme="@style/Theme.FoodDelivery">
         <activity
             android:name=".ui.MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
