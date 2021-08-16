@@ -94,7 +94,7 @@
 
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/login_custom_button"
@@ -107,32 +107,34 @@
         app:layout_constraintTop_toBottomOf="@+id/loginPasswordEditText"
         app:layout_constraintVertical_bias="0.336" />
 
-    <TextView
-        android:id="@+id/don_t_have_"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/dont_have"
-        android:textAlignment="center"
-        android:textColor="#2E3E5C"
-        android:textSize="15sp"
-        android:translationY="-3.42sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.326"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login"
-        app:layout_constraintVertical_bias="0.374" />
+        app:layout_constraintTop_toBottomOf="@+id/loginButton">
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
-        android:text="@string/sign_up"
-        android:textColor="#1FCC79"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/don_t_have_"
-        app:layout_constraintTop_toBottomOf="@+id/login" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dont_have"
+            android:textAlignment="center"
+            android:textColor="#2E3E5C"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/signUpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/sign_up"
+            android:textColor="#1FCC79"
+            android:textSize="15sp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
