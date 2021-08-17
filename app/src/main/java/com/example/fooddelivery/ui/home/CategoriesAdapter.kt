@@ -4,32 +4,32 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fooddelivery.R
-import com.example.fooddelivery.data.entity.Categorie
-import com.example.fooddelivery.databinding.ItemHomeCategoriesBinding
+import com.example.fooddelivery.data.entity.Category
+import com.example.fooddelivery.databinding.ItemHomeCategoryBinding
 import com.example.fooddelivery.ui.home.CategoriesAdapter.*
 
 class CategoriesAdapter: RecyclerView.Adapter<CategoriesViewHolder>() {
 
-    private var categoriesList = ArrayList<Categorie>()
+    private var categoriesList = ArrayList<Category>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesViewHolder {
-        val binding = ItemHomeCategoriesBinding
+        val binding = ItemHomeCategoryBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
         return CategoriesViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
-        val categorie = categoriesList[position]
-        holder.binding.categoriesTextView.text = categorie.categorieName
+        val category = categoriesList[position]
+        holder.binding.categoryTextView.text = category.categoryName
 
-        when(categorie.categorieImage){
-            1->holder.binding.categoriesImageView.setImageResource(R.drawable.ic_hamburger)
-            2->holder.binding.categoriesImageView.setImageResource(R.drawable.ic_salad)
-            3->holder.binding.categoriesImageView.setImageResource(R.drawable.ic_pizza)
+        when(category.categoryImage){
+            1->holder.binding.categoryImageView.setImageResource(R.drawable.ic_hamburger)
+            2->holder.binding.categoryImageView.setImageResource(R.drawable.ic_salad)
+            3->holder.binding.categoryImageView.setImageResource(R.drawable.ic_pizza)
         }
     }
 
-    fun setQuizList(categories: ArrayList<Categorie>) {
+    fun setCategoriesList(categories: ArrayList<Category>) {
         categoriesList = categories
         notifyDataSetChanged()
     }
@@ -37,7 +37,7 @@ class CategoriesAdapter: RecyclerView.Adapter<CategoriesViewHolder>() {
 
     override fun getItemCount(): Int = categoriesList.size
 
-    inner class CategoriesViewHolder(val binding: ItemHomeCategoriesBinding):RecyclerView.ViewHolder(binding.root)
+    inner class CategoriesViewHolder(val binding: ItemHomeCategoryBinding):RecyclerView.ViewHolder(binding.root)
 }
 
 

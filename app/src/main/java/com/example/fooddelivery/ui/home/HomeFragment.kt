@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
             GridLayoutManager(context,2)
 
         val categorieslist = viewModel.getTestItemAddCategoriesList()
-        categoriesAdapter.setQuizList(categorieslist)
+        categoriesAdapter.setCategoriesList(categorieslist)
 
         val restaurantsList = viewModel.getTestItemAddRestaurantList()
         restaurantAdapter.setQuizList(restaurantsList)

@@ -2,7 +2,7 @@ package com.example.fooddelivery.ui.home
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.example.fooddelivery.data.entity.Categorie
+import com.example.fooddelivery.data.entity.Category
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -11,12 +11,12 @@ class HomeViewModel @Inject constructor(
     var savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    fun getTestItemAddCategoriesList(): ArrayList<Categorie> {
-        val categoriesList = ArrayList<Categorie>()
+    fun getTestItemAddCategoriesList(): ArrayList<Category> {
+        val categoriesList = ArrayList<Category>()
 
-        categoriesList.add(0, Categorie(1, "Hamburger"))
-        categoriesList.add(1, Categorie(2, "Salad"))
-        categoriesList.add(2, Categorie(3, "Pizza"))
+        categoriesList.add(0, Category(1, "Hamburger"))
+        categoriesList.add(1, Category(2, "Salad"))
+        categoriesList.add(2, Category(3, "Pizza"))
 
         return categoriesList
     }

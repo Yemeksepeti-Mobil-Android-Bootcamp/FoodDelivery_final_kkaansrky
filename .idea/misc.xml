@@ -5,19 +5,25 @@
       <map>
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/custom_button.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/custom_input.xml" value="0.1" />
+        <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/ic_hamburger.xml" value="0.3828125" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/ic_locklock.xml" value="0.1" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/ic_message.xml" value="0.3828125" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/ic_messagemessage.xml" value="0.1" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/ic_name.xml" value="0.3828125" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/ic_outline_remove_red_eye_24.xml" value="0.1" />
+        <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/ic_restaurant_temp_photo.xml" value="0.1925925925925926" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/ic_vector.xml" value="0.1" />
+        <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/item_home_categories.xml" value="0.3828125" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/login_custom_button.xml" value="0.3828125" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/login_custom_input.xml" value="0.3828125" />
-        <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/activity_splash.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/fragment_login.xml" value="0.33" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/fragment_register.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/fragment_splash.xml" value="0.1" />
+        <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/item_home_categories.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/item_home_restaurants.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
