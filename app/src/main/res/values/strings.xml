@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">FoodDelivery</string>
 
-    <!--Login Strings-->
+    <!-- Login Strings -->
     <string name="welcome">Welcome</string>
     <string name="enter_account">Please enter your account here</string>
     <string name="dont_have" translatable="false">Don\'t have any account?</string>
@@ -13,7 +13,7 @@
     <string name="email">Email</string>
     <string name="forgot_password">Forgot password?</string>
 
-    <!--Register Strings-->
+    <!-- Register Strings -->
     <string name="name">Name</string>
     <string name="password_confirm">Password Confirm</string>
     <string name="register">Register</string>
@@ -27,4 +27,9 @@
     <string name="restaurants">Restaurants</string>
     <string name="restaurantsimage">restaurantsImage</string>
     <string name="categorieimage">categorieImage</string>
+
+    <!-- Navbar Strings -->
+    <string name="basket">Basket</string>
+    <string name="profile">Profile</string>
+    <string name="home">Home</string>
 </resources>
