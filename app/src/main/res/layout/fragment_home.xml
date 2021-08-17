@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:paddingHorizontal="16dp"
+    android:paddingTop="16dp"
     tools:context=".ui.home.HomeFragment">
 
     <LinearLayout
@@ -67,7 +68,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/homeRestaurantRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
