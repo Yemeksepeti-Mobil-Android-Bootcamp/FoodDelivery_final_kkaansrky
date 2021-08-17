@@ -3,8 +3,6 @@ package com.example.fooddelivery.ui.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fooddelivery.data.entity.Restaurant
-import com.example.fooddelivery.databinding.ItemHomeCategoriesBinding
 import com.example.fooddelivery.databinding.ItemHomeRestaurantsBinding
 
 class RestaurantsAdapter: RecyclerView.Adapter<RestaurantsAdapter.RestaurantsViewHolder>() {
