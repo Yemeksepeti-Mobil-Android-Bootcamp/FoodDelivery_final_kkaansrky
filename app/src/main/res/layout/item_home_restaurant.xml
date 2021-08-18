@@ -23,7 +23,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
-            android:src="@drawable/restaurant_temp_photo"
+            android:src="@drawable/ic_restaurant_temp_photo"
             android:contentDescription="@string/restaurantsimage" />
 
         <TextView

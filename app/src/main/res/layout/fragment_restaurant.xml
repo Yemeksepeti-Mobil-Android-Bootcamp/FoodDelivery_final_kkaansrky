@@ -38,7 +38,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:src="@drawable/restaurant_temp_photo"
+                    android:src="@drawable/ic_restaurant_temp_photo"
                     app:layout_collapseMode="parallax" />
 
                 <TextView
