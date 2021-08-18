@@ -22,14 +22,17 @@
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
             <RelativeLayout
+                android:id="@+id/collapsingRelativeLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="100dp">
+                android:layout_gravity="bottom"
+                android:layout_marginTop="?android:attr/actionBarSize"
+                android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/restaurantImageView"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
@@ -42,7 +45,8 @@
                     android:id="@+id/deliveryInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/restaurantImageView"
+                    android:layout_marginTop="8dp"
+                    android:layout_toStartOf="@+id/restaurantImageView"
                     android:fontFamily="@font/raleway_bold"
                     android:paddingHorizontal="16dp"
                     android:paddingTop="8dp"
@@ -56,11 +60,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/deliveryInfo"
-                    android:layout_toEndOf="@id/restaurantImageView"
+                    android:layout_toStartOf="@id/restaurantImageView"
                     android:fontFamily="@font/raleway_bold"
                     android:paddingHorizontal="16dp"
                     android:paddingBottom="16dp"
-                    android:text="Delivered between monday and thursday from 11am to 11 pm"
+                    tools:text="Delivered between monday and thursday from 11am to 11 pm"
                     android:textSize="15sp" />
 
                 <TextView
@@ -68,7 +72,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/deliveryInfoTextView"
-                    android:layout_toEndOf="@id/restaurantImageView"
+                    android:layout_toStartOf="@id/restaurantImageView"
                     android:fontFamily="@font/raleway_bold"
                     android:paddingHorizontal="16dp"
                     android:paddingBottom="4dp"
@@ -81,11 +85,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/payment"
-                    android:layout_toEndOf="@id/restaurantImageView"
+                    android:layout_marginBottom="16dp"
+                    android:layout_toStartOf="@id/restaurantImageView"
                     android:fontFamily="@font/raleway_bold"
                     android:paddingHorizontal="16dp"
-                    android:textSize="15sp"
-                    android:text="Online Credit/Bank Card, Cash, Ticket Restaurant Card, Sodexo" />
+                    tools:text="Online Credit/Bank Card, Cash, Ticket Restaurant Card, Sodexo"
+                    android:textSize="15sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -96,10 +101,10 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
-                android:layout_gravity="bottom"
                 app:layout_collapseMode="pin">
 
                 <LinearLayout
+                    android:id="@+id/toolbarLinear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -112,7 +117,7 @@
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:fontFamily="@font/raleway_bold"
-                        android:text="Restaurant Name" />
+                        android:text="@string/restaurant_name" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -128,7 +133,7 @@
                             android:fontFamily="@font/raleway_bold"
                             app:drawableStartCompat="@drawable/ic_time"
                             android:drawablePadding="5dp"
-                            android:text="30-40 minutes" />
+                            tools:text="30-40 minutes" />
 
 
                         <TextView
@@ -140,7 +145,7 @@
                             android:textSize="15sp"
                             app:drawableStartCompat="@drawable/ic_money"
                             android:drawablePadding="5dp"
-                            android:text="5.00 $" />
+                            tools:text="5.00 $" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -161,7 +166,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="16dp">
+            android:padding="8dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/restaurantRecyclerView"
