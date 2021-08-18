@@ -10,4 +10,9 @@
         android:name="com.example.fooddelivery.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/restaurantFragment"
+        android:name="com.example.fooddelivery.ui.restaurant.RestaurantFragment"
+        android:label="fragment_restaurant"
+        tools:layout="@layout/fragment_restaurant" />
 </navigation>

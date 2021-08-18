@@ -14,9 +14,9 @@ class HomeViewModel @Inject constructor(
     fun getTestItemAddCategoriesList(): ArrayList<Category> {
         val categoriesList = ArrayList<Category>()
 
-        categoriesList.add(0, Category(1, "Hamburger"))
-        categoriesList.add(1, Category(2, "Salad"))
-        categoriesList.add(2, Category(3, "Pizza"))
+        categoriesList.add(Category(1, "Hamburger"))
+        categoriesList.add(Category(2, "Salad"))
+        categoriesList.add(Category(3, "Pizza"))
 
         return categoriesList
     }
