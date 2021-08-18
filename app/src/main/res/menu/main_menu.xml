@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cnb_unselectedColor="#666666">
     <item
-        android:id="@+id/home"
+        android:id="@+id/homeFragment"
         android:title="@string/home"
         android:icon="@drawable/ic_home"
         app:cnb_iconColor="#9C27B0"/>
     <item
-        android:id="@+id/basket"
+        android:id="@+id/restaurantFragment"
         android:title="@string/basket"
         android:icon="@drawable/ic_basket"
         app:cnb_iconColor="#F44336"/>
