@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.fooddelivery.R
 import com.example.fooddelivery.databinding.FragmentLoginBinding
-import com.example.fooddelivery.ui.MainActivity
+import com.example.fooddelivery.ui.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,7 +34,7 @@ class LoginFragment : Fragment() {
     private fun initViews() {
 
         binding.loginButton.setOnClickListener{
-            val intent = Intent(requireActivity(),MainActivity::class.java)
+            val intent = Intent(requireActivity(), MainActivity::class.java)
             startActivity(intent)
             requireActivity().finish()
         }
