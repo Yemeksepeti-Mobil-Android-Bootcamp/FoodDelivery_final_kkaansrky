@@ -1,6 +1,8 @@
 package com.example.fooddelivery.ui.main
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -13,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var adapter: MainViewPagerAdapter
+    private lateinit var viewPagerAdapter: MainViewPagerAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity() {
             mainNavBar.setOnItemSelectedListener {
                 when(it){
                     R.id.homeFragment->{
+                        Log.d(TAG, "onCreate: Girdi")
                         binding.viewPager2.currentItem = 0
                     }
                     R.id.restaurantFragment->{
@@ -45,10 +48,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setViewPager() {
-        adapter = MainViewPagerAdapter(this)
+        viewPagerAdapter = MainViewPagerAdapter(this)
         binding.viewPager2.apply {
             isUserInputEnabled = false
-            adapter = adapter
+            adapter = viewPagerAdapter
         }
     }
 }
