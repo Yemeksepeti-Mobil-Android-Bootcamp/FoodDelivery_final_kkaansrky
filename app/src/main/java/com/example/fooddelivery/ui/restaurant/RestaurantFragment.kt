@@ -14,7 +14,9 @@ import com.example.fooddelivery.databinding.FragmentHomeBinding
 import com.example.fooddelivery.databinding.FragmentRestaurantBinding
 import com.example.fooddelivery.ui.home.CategoriesAdapter
 import com.example.fooddelivery.ui.home.HomeViewModel
+import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.Math.abs
 
 @AndroidEntryPoint
 class RestaurantFragment : Fragment() {
@@ -51,5 +53,22 @@ class RestaurantFragment : Fragment() {
         Log.d(TAG, "initViews: "+mealslist.size)
 
         binding.restaurantRecyclerView.adapter=mealsAdapter
+
+        binding.appBarLayout.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
+            internal var isShow = false
+            internal var scrollRange = -1
+
+            override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
+                when {
+                    //  State Expanded
+                    verticalOffset == 0 -> {
+                        binding.collapsingRelativeLayout.visibility = View.VISIBLE
+                    }
+                    verticalOffset != 0 ->{
+                        binding.collapsingRelativeLayout.visibility = View.INVISIBLE
+                    }
+                }
+            }
+        })
     }
 }

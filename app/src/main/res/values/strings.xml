@@ -38,4 +38,5 @@
     <string name="delivery_time">Delivery Time</string>
     <string name="minimum_delivery_fee">Minimum Delivery Fee</string>
     <string name="payment">Payment</string>
+    <string name="restaurant_name">Restaurant Name</string>
 </resources>
