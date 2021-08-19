@@ -12,6 +12,7 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService): 
 
     suspend fun postRegister(request: RegisterRequest) = getResult {
         apiService.register(request)
+    }
 
     suspend fun getUser() = getResult {
         apiService.getUser()
