@@ -2,6 +2,7 @@ package com.example.fooddelivery.utils
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import com.example.fooddelivery.data.entity.login.LoginResponse
 import kotlinx.coroutines.Dispatchers
 
 fun <T> performNetworkOperation(call: suspend () -> Resource<T>): LiveData<Resource<T>> {
@@ -31,11 +32,11 @@ fun <T> performAuthTokenNetworkOperation(
         if (networkCall.status == Resource.Status.SUCCESS) {
             val data = networkCall.data!!
 
-            /*if (data is LoginResponse) {
+            if (data is LoginResponse) {
                 saveToken(data.token)
             }
 
-            if (data is RegisterResponse) {
+            /*if (data is RegisterResponse) {
                 saveToken(data.token)
             }*/
             emit(Resource.success(data))
