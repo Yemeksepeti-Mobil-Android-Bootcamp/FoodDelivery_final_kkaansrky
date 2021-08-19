@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.meal.MealFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/mealCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_200"
+        android:padding="16dp"
+        app:cardElevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profileConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/profile_photo"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@null"
+                android:src="@drawable/temp_meal"
+                android:contentDescription="@string/mealimage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/CircularImageView" />
+
+
+            <TextView
+                android:id="@+id/mealNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="16dp"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_photo"
+                tools:text="Hamburger" />
+
+            <TextView
+                android:id="@+id/mealDescriptionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mealNameTextView"
+                tools:text="Description" />
+
+            <View
+                android:id="@+id/mealCardDivider"
+                style="@style/Divider"
+                android:layout_margin="10dp"
+                android:background="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/mealDescriptionTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/mealCardDivider">
+
+                <ImageButton
+                    android:id="@+id/mealMinusButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_minus"
+                    android:contentDescription="@string/minusorder" />
+
+                <TextView
+                    android:id="@+id/mealCountTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/raleway_bold"
+                    tools:text="2"
+                    android:textSize="20sp"
+                    android:layout_toEndOf="@id/mealMinusButton"/>
+
+                <TextView
+                    android:id="@+id/countText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toEndOf="@id/mealCountTextView"
+                    android:fontFamily="@font/raleway_bold"
+                    android:text="@string/piece"
+                    android:textSize="20sp" />
+
+                <ImageButton
+                    android:id="@+id/mealPlusButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_toEndOf="@id/countText"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_plus"
+                    android:contentDescription="@string/plus" />
+
+                <TextView
+                    android:id="@+id/mealPriceTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/raleway_bold"
+                    tools:text="20.00 TL"
+                    android:textSize="20sp" />
+
+
+
+
+            </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintTop_toBottomOf="@id/mealCard">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/materialsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_bold"
+                android:text="@string/materials"
+                android:textColor="@color/purple_200"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/please_select_the_materials_you_want_to_extract"
+                android:layout_marginHorizontal="16dp"
+                android:fontFamily="@font/raleway_bold"
+                android:textSize="11sp"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@id/materialsText"
+                android:gravity="end"/>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                android:layout_margin="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/materialsText"/>
+
+        </RelativeLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <Button
+        android:id="@+id/mealOrderButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_custom_button"
+        android:text="@string/order_now"
+        android:textAllCaps="false"
+        android:layout_margin="16dp"
+        app:backgroundTint="@color/purple_200"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
