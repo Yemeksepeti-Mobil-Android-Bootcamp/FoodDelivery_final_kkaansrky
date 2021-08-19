@@ -1,0 +1,21 @@
+package com.example.fooddelivery.data
+
+import com.example.fooddelivery.data.entity.login.LoginRequest
+import com.example.fooddelivery.data.local.LocalDataSource
+import com.example.fooddelivery.data.remote.RemoteDataSource
+import com.example.fooddelivery.utils.performAuthTokenNetworkOperation
+import javax.inject.Inject
+
+class ApiRepository @Inject constructor(
+    private var localDataSource: LocalDataSource,
+    private var remoteDataSource: RemoteDataSource
+) {
+    fun login(request: LoginRequest) = performAuthTokenNetworkOperation(
+        call = {
+            remoteDataSource.postLogin(request)
+        },
+        saveToken = {
+            localDataSource.saveToken(it)
+        }
+    )
+}
