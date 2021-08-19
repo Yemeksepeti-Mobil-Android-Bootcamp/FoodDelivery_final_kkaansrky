@@ -12,10 +12,8 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.fooddelivery.R
-import com.example.fooddelivery.data.entity.Meal
-import com.example.fooddelivery.data.entity.restaurant.Restaurant
+import com.example.fooddelivery.data.entity.meal.Meal
 import com.example.fooddelivery.databinding.FragmentRestaurantBinding
-import com.example.fooddelivery.ui.home.HomeFragment
 import com.example.fooddelivery.utils.Resource
 import com.example.fooddelivery.utils.hide
 import com.example.fooddelivery.utils.show

@@ -1,6 +1,6 @@
 package com.example.fooddelivery.data.entity.restaurant
 
-import com.example.fooddelivery.data.entity.Meal
+import com.example.fooddelivery.data.entity.meal.Meal
 import com.google.gson.annotations.SerializedName
 
 data class Restaurant(

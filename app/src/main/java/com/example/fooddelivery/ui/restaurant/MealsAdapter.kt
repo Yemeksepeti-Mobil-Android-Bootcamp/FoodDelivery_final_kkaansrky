@@ -6,9 +6,8 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.fooddelivery.R
-import com.example.fooddelivery.data.entity.Meal
+import com.example.fooddelivery.data.entity.meal.Meal
 import com.example.fooddelivery.databinding.ItemRestaurantMealBinding
-import com.example.fooddelivery.ui.home.HomeFragmentDirections
 
 class MealsAdapter: RecyclerView.Adapter<MealsAdapter.MealsViewHolder>() {
     private var mealsList = ArrayList<Meal>()
