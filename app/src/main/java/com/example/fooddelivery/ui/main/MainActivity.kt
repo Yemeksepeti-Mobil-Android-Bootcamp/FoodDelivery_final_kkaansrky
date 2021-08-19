@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
                         binding.viewPager2.currentItem = 1
                     }
                     else ->{
-                        binding.viewPager2.currentItem = 1
+                        binding.viewPager2.currentItem = 2
                     }
                 }
             }
