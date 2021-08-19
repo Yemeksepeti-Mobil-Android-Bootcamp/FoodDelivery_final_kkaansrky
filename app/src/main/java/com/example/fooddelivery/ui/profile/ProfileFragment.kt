@@ -14,9 +14,10 @@ import com.bumptech.glide.Glide
 import com.example.fooddelivery.R
 import com.example.fooddelivery.data.entity.user.User
 import com.example.fooddelivery.databinding.FragmentProfileBinding
-import com.example.fooddelivery.ui.login.LoginViewModel
 import com.example.fooddelivery.ui.splash.SplashActivity
 import com.example.fooddelivery.utils.Resource
+import com.example.fooddelivery.utils.gone
+import com.example.fooddelivery.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -65,17 +66,17 @@ class ProfileFragment : Fragment() {
 
             when (it.status) {
                 Resource.Status.LOADING -> {
-                    binding.progressBar.visibility = View.VISIBLE
+                    binding.progressBar.show()
                 }
                 Resource.Status.SUCCESS -> {
-                    binding.progressBar.visibility = View.GONE
+                    binding.progressBar.gone()
                     val user = it.data?.user
                     if (user != null) {
                         updateUI(user)
                     }
                 }
                 Resource.Status.ERROR -> {
-                    binding.progressBar.visibility = View.GONE
+                    binding.progressBar.gone()
                     Toast.makeText(activity, "Kullanıcı getirelemedi", Toast.LENGTH_SHORT).show()
                 }
             }

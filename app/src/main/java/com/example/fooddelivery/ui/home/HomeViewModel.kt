@@ -1,17 +1,28 @@
 package com.example.fooddelivery.ui.home
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import com.example.fooddelivery.data.ApiRepository
 import com.example.fooddelivery.data.entity.Category
+import com.example.fooddelivery.data.entity.restaurant.RestaurantListResponse
+import com.example.fooddelivery.data.entity.restaurant.RestaurantResponse
+import com.example.fooddelivery.data.entity.user.UserResponse
+import com.example.fooddelivery.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    var savedStateHandle: SavedStateHandle
+    var savedStateHandle: SavedStateHandle,
+    private var apiRepository: ApiRepository
 ) : ViewModel() {
 
-    fun getTestItemAddCategoriesList(): ArrayList<Category> {
+    fun getRestaurantsList(): LiveData<Resource<RestaurantListResponse>> {
+        return apiRepository.getRestaurants()
+    }
+
+    fun getTestItemCategoriesList(): ArrayList<Category> {
         val categoriesList = ArrayList<Category>()
 
         categoriesList.add(Category(1, "Hamburger"))
@@ -21,7 +32,7 @@ class HomeViewModel @Inject constructor(
         return categoriesList
     }
 
-    fun getTestItemAddRestaurantList(): ArrayList<String> {
+    fun getTestItemRestaurantList(): ArrayList<String> {
         val restaurantList = ArrayList<String>()
 
         restaurantList.add( "Ayten Usta")
