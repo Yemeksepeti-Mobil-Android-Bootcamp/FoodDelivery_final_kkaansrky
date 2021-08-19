@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddelivery.databinding.FragmentRestaurantBinding
+import com.example.fooddelivery.utils.hide
+import com.example.fooddelivery.utils.show
 import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -51,10 +53,10 @@ class RestaurantFragment : Fragment() {
                 when {
                     //  State Expanded
                     verticalOffset == 0 -> {
-                        binding.collapsingRelativeLayout.visibility = View.VISIBLE
+                        binding.collapsingRelativeLayout.show()
                     }
                     verticalOffset != 0 ->{
-                        binding.collapsingRelativeLayout.visibility = View.INVISIBLE
+                        binding.collapsingRelativeLayout.hide()
                     }
                 }
             }
