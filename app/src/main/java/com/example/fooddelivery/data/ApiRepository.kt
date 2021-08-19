@@ -30,12 +30,17 @@ class ApiRepository @Inject constructor(
         }
     )
 
+    fun logOutUser(){
+        localDataSource.saveToken("")
+    }
+
     fun getUser() =
         performNetworkOperation {
             remoteDataSource.getUser()
         }
 
-    fun logOutUser(){
-        localDataSource.saveToken("")
-    }
+    fun getRestaurants() =
+        performNetworkOperation {
+            remoteDataSource.getRestaurants()
+        }
 }

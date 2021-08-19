@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.fooddelivery.data.entity.restaurant.Restaurant
 import com.example.fooddelivery.databinding.FragmentHomeBinding
+import com.example.fooddelivery.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,11 +49,30 @@ class HomeFragment : Fragment() {
         binding.homeRestaurantRecyclerView.layoutManager =
             GridLayoutManager(context,2)
 
-        val categorieslist = viewModel.getTestItemAddCategoriesList()
+        val categorieslist = viewModel.getTestItemCategoriesList()
         categoriesAdapter.setCategoriesList(categorieslist)
 
-        val restaurantsList = viewModel.getTestItemAddRestaurantList()
-        restaurantAdapter.setQuizList(restaurantsList)
+        //val restaurantsList = viewModel.getTestItemRestaurantList()
+        viewModel.getRestaurantsList().observe(viewLifecycleOwner, {
+
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                    //binding.progressBar.visibility = View.VISIBLE
+                }
+                Resource.Status.SUCCESS -> {
+                    //binding.progressBar.visibility = View.GONE
+                    val restaurantsListResponse = it.data
+                    val restaurantsList = restaurantsListResponse?.restaurantList
+                    restaurantAdapter.setRestaurantsList(restaurantsList as ArrayList<Restaurant>)
+                }
+                Resource.Status.ERROR -> {
+                    //binding.progressBar.visibility = View.GONE
+                    Toast.makeText(activity, "Kullanıcı getirelemedi", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        })
+
 
 
         binding.homeCategoriesRecyclerView.adapter = categoriesAdapter
