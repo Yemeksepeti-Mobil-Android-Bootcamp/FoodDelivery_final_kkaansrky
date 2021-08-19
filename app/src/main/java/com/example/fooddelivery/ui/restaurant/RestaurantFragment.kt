@@ -3,20 +3,15 @@ package com.example.fooddelivery.ui.restaurant
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.fooddelivery.R
-import com.example.fooddelivery.databinding.FragmentHomeBinding
 import com.example.fooddelivery.databinding.FragmentRestaurantBinding
-import com.example.fooddelivery.ui.home.CategoriesAdapter
-import com.example.fooddelivery.ui.home.HomeViewModel
 import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.Math.abs
 
 @AndroidEntryPoint
 class RestaurantFragment : Fragment() {
@@ -50,13 +45,9 @@ class RestaurantFragment : Fragment() {
         val mealslist = viewModel.getTestItemAddMealsList()
         mealsAdapter.setMealsList(mealslist)
 
-        Log.d(TAG, "initViews: "+mealslist.size)
-
         binding.restaurantRecyclerView.adapter=mealsAdapter
 
         binding.appBarLayout.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
-            internal var isShow = false
-            internal var scrollRange = -1
 
             override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
                 when {

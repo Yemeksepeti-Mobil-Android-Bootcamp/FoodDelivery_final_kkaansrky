@@ -85,7 +85,7 @@
         android:text="@string/forgot_password"
         android:textColor="#2E3E5C"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintBottom_toTopOf="@+id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.946"
         app:layout_constraintStart_toStartOf="parent"
