@@ -1,17 +1,24 @@
 package com.example.fooddelivery.ui.restaurant
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import com.example.fooddelivery.data.ApiRepository
 import com.example.fooddelivery.data.entity.Meal
+import com.example.fooddelivery.data.entity.restaurant.RestaurantResponse
+import com.example.fooddelivery.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class RestaurantViewModel @Inject constructor (
-    var savedStateHandle: SavedStateHandle
+    var savedStateHandle: SavedStateHandle,
+    private var apiRepository: ApiRepository
 ) : ViewModel() {
 
-    fun getTestItemAddMealsList(): ArrayList<Meal> {
+    fun getRestaurantDetail(id: String): LiveData<Resource<RestaurantResponse>> = apiRepository.getRestaurantById(id)
+
+    fun getTestItemMealsList(): ArrayList<Meal> {
         val mealsList = ArrayList<Meal>()
 
         mealsList.add( Meal(

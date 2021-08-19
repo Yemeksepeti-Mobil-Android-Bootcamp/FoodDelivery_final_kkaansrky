@@ -59,12 +59,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/deliveryInfo"
-                    android:layout_toStartOf="@id/restaurantImageView"
                     android:fontFamily="@font/raleway_bold"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@id/restaurantImageView"
                     android:paddingHorizontal="16dp"
                     android:paddingBottom="16dp"
-                    tools:text="Delivered between monday and thursday from 11am to 11 pm"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    tools:text="Delivered between monday and thursday from 11am to 11 pm" />
 
                 <TextView
                     android:id="@+id/payment"
@@ -84,12 +85,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/payment"
+                    android:layout_alignParentStart="true"
                     android:layout_marginBottom="16dp"
                     android:layout_toStartOf="@id/restaurantImageView"
                     android:fontFamily="@font/raleway_bold"
                     android:paddingHorizontal="16dp"
-                    tools:text="Online Credit/Bank Card, Cash, Ticket Restaurant Card, Sodexo"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    tools:text="Online Credit/Bank Card, Cash, Ticket Restaurant Card, Sodexo" />
 
                 <View
                     android:layout_width="match_parent"
@@ -100,6 +102,8 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
+                android:elevation="0dp"
+                android:background="@color/purple_200"
                 app:layout_collapseMode="pin">
 
                 <LinearLayout

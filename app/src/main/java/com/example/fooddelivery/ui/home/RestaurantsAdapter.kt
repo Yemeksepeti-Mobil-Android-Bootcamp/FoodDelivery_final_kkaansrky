@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.fooddelivery.R
 import com.example.fooddelivery.data.entity.restaurant.Restaurant
 import com.example.fooddelivery.databinding.ItemHomeRestaurantBinding
 
@@ -20,7 +22,14 @@ class RestaurantsAdapter: RecyclerView.Adapter<RestaurantsAdapter.RestaurantsVie
     override fun onBindViewHolder(holder: RestaurantsViewHolder, position: Int) {
         val restaurant = restaurantsList[position]
 
-        holder.binding.restaurantTextView.text=restaurant.name
+        holder.binding.apply {
+            restaurantTextView.text=restaurant.name
+            Glide
+                .with(holder.itemView.context)
+                .load(restaurant.image)
+                .placeholder(R.drawable.temp_meal)
+                .into(restaurantImageView)
+        }
 
         holder.binding.itemCardView.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToRestaurantFragment(restaurant.id)
