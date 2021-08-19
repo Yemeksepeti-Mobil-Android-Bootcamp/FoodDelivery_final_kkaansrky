@@ -4,11 +4,8 @@ import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.ui.NavigationUI
 import com.example.fooddelivery.R
 import com.example.fooddelivery.databinding.ActivityMainBinding
-import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
