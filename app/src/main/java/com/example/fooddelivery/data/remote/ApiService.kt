@@ -2,6 +2,7 @@ package com.example.fooddelivery.data.remote
 
 import com.example.fooddelivery.data.entity.login.LoginRequest
 import com.example.fooddelivery.data.entity.login.LoginResponse
+import com.example.fooddelivery.data.entity.meal.MealResponse
 import com.example.fooddelivery.data.entity.register.RegisterRequest
 import com.example.fooddelivery.data.entity.register.RegisterResponse
 import com.example.fooddelivery.data.entity.restaurant.RestaurantListResponse
@@ -28,5 +29,8 @@ interface ApiService {
 
     @GET("a/restaurant/{id}")
     suspend fun getRestaurantById(@Path("id") id: String): Response<RestaurantResponse>
+
+    @GET("a/meal/{id}")
+    suspend fun getMealById(@Path("id") id: String): Response<MealResponse>
 
 }

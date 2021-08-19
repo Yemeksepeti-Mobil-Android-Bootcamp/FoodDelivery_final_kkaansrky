@@ -1,4 +1,4 @@
-package com.example.fooddelivery.data.entity
+package com.example.fooddelivery.data.entity.meal
 
 import com.google.gson.annotations.SerializedName
 

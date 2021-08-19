@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.example.fooddelivery.R
 import com.example.fooddelivery.databinding.FragmentMealBinding
+import com.example.fooddelivery.utils.Resource
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -14,6 +18,9 @@ import dagger.hilt.android.AndroidEntryPoint
 class MealFragment : Fragment() {
     private var _binding: FragmentMealBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: MealViewModel by viewModels()
+    private val args: MealFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +40,34 @@ class MealFragment : Fragment() {
     }
 
     private fun initViews() {
-        setIngredientsChips(getTestItemAddIngredient())
+        setMealDetails()
+    }
+
+    private fun setMealDetails() {
+        viewModel.getMealDetails(args.mealId).observe(viewLifecycleOwner,{
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                    //binding.progressBar.visibility = View.VISIBLE
+                }
+                Resource.Status.SUCCESS -> {
+                    //binding.progressBar.visibility = View.GONE
+                    val meal = it.data!!.data
+
+                    binding.apply {
+                        mealNameTextView.text = meal.name
+                        mealDescriptionTextView.text = meal.description
+                        val price = meal.price + " TL"
+                        mealPriceTextView.text = price
+
+                        setIngredientsChips(meal.ingredients)
+                    }
+                }
+                Resource.Status.ERROR -> {
+                    //binding.progressBar.visibility = View.GONE
+                    Toast.makeText(activity, "The restaurant could not be brought", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 
     private fun getTestItemAddIngredient(): ArrayList<String> {
