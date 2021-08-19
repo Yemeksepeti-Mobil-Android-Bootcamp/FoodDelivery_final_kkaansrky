@@ -5,6 +5,7 @@ import com.example.fooddelivery.data.entity.register.RegisterRequest
 import com.example.fooddelivery.data.local.LocalDataSource
 import com.example.fooddelivery.data.remote.RemoteDataSource
 import com.example.fooddelivery.utils.performAuthTokenNetworkOperation
+import com.example.fooddelivery.utils.performNetworkOperation
 import javax.inject.Inject
 
 class ApiRepository @Inject constructor(
@@ -19,7 +20,7 @@ class ApiRepository @Inject constructor(
             localDataSource.saveToken(it)
         }
     )
-
+    
     fun register(request: RegisterRequest) = performAuthTokenNetworkOperation(
         call = {
             remoteDataSource.postRegister(request)
@@ -28,4 +29,13 @@ class ApiRepository @Inject constructor(
             localDataSource.saveToken(it)
         }
     )
+
+    fun getUser() =
+        performNetworkOperation {
+            remoteDataSource.getUser()
+        }
+
+    fun logOutUser(){
+        localDataSource.saveToken("")
+    }
 }
