@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/custom_button.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/custom_cardview.xml" value="0.3435185185185185" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/custom_input.xml" value="0.1" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/ic_hamburger.xml" value="0.3828125" />
+        <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/ic_home_profile.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/ic_locklock.xml" value="0.1" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/ic_message.xml" value="0.3828125" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/ic_messagemessage.xml" value="0.1" />
@@ -20,11 +22,16 @@
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/activity_splash.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/fragment_login.xml" value="0.33" />
+        <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/fragment_meal.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/fragment_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/fragment_register.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/fragment_restaurant.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/fragment_splash.xml" value="0.1" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/item_home_categories.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/item_home_restaurant.xml" value="0.1875" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/item_home_restaurants.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/item_meal_ingredient.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/item_restaurant_meal.xml" value="0.2884963768115942" />
         <entry key="..\:/Users/TR/AndroidStudioProjects/FoodDelivery/app/src/main/res/menu/main_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
@@ -34,5 +41,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.17831813576494426" />
+      </ProjectState>
+    </option>
   </component>
 </project>

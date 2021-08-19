@@ -2,7 +2,6 @@ package com.example.fooddelivery.ui.restaurant
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.example.fooddelivery.data.entity.Category
 import com.example.fooddelivery.data.entity.Meal
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

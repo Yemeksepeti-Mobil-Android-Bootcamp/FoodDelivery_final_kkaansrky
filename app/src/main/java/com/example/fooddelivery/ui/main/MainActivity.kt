@@ -4,11 +4,8 @@ import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.ui.NavigationUI
 import com.example.fooddelivery.R
 import com.example.fooddelivery.databinding.ActivityMainBinding
-import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,7 +36,7 @@ class MainActivity : AppCompatActivity() {
                         binding.viewPager2.currentItem = 1
                     }
                     else ->{
-                        binding.viewPager2.currentItem = 1
+                        binding.viewPager2.currentItem = 2
                     }
                 }
             }

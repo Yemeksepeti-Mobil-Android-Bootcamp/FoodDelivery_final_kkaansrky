@@ -39,6 +39,9 @@
     <string name="minimum_delivery_fee">Minimum Delivery Fee</string>
     <string name="payment">Payment</string>
     <string name="restaurant_name">Restaurant Name</string>
+
+
+    <!-- Meal Strings -->
     <string name="mealimage">mealImage</string>
     <string name="please_select_the_materials_you_want_to_extract">Please select the materials you want to extract</string>
     <string name="materials">Materials</string>
@@ -47,6 +50,9 @@
     <string name="plus">plus</string>
     <string name="order_now">Order Now</string>
 
-    <!-- Meal Strings -->
+    <!-- Profile Strings -->
+    <string name="logout">Log Out</string>
+    <string name="update_profile">Update Profile</string>
+
 
 </resources>

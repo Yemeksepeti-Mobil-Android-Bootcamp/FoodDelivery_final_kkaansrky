@@ -1,16 +1,16 @@
 package com.example.fooddelivery.ui.meal
 
-import android.R.attr.category
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.fooddelivery.R
-import com.example.fooddelivery.data.entity.Meal
 import com.example.fooddelivery.databinding.FragmentMealBinding
 import com.google.android.material.chip.Chip
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MealFragment : Fragment() {
     private var _binding: FragmentMealBinding? = null
     private val binding get() = _binding!!
