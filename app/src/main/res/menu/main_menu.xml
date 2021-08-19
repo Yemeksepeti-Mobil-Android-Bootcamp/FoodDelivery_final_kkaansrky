@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cnb_unselectedColor="#666666">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/homeFragment"
         android:title="@string/home"
-        android:icon="@drawable/ic_home"
-        app:cnb_iconColor="#9C27B0"/>
+        android:icon="@drawable/ic_home" />
     <item
         android:id="@+id/restaurantFragment"
         android:title="@string/basket"
-        android:icon="@drawable/ic_basket"
-        app:cnb_iconColor="#F44336"/>
+        android:icon="@drawable/ic_basket" />
     <item
-        android:id="@+id/person"
+        android:id="@+id/profileFragment"
         android:title="@string/profile"
-        android:icon="@drawable/ic_person"
-        app:cnb_iconColor="#4CAF50"/>
+        android:icon="@drawable/ic_person" />
 </menu>

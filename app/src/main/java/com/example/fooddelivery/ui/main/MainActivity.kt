@@ -1,19 +1,20 @@
 package com.example.fooddelivery.ui.main
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.fooddelivery.R
 import com.example.fooddelivery.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var viewPagerAdapter: MainViewPagerAdapter
-
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,34 +22,15 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        setViewPager()
-        binding.apply {
-            mainNavBar.setItemSelected(R.id.homeFragment)
-            mainNavBar.showBadge(R.id.restaurantFragment,2)
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        navController = findNavController(this, R.id.navHostFragment)
 
-            mainNavBar.setOnItemSelectedListener {
-                when(it){
-                    R.id.homeFragment->{
-                        Log.d(TAG, "onCreate: Girdi")
-                        binding.viewPager2.currentItem = 0
-                    }
-                    R.id.restaurantFragment->{
-                        binding.viewPager2.currentItem = 1
-                    }
-                    else ->{
-                        binding.viewPager2.currentItem = 2
-                    }
-                }
-            }
-
-        }
+        NavigationUI.setupWithNavController(bottomNavigationView, navController)
     }
 
-    private fun setViewPager() {
-        viewPagerAdapter = MainViewPagerAdapter(this)
-        binding.viewPager2.apply {
-            isUserInputEnabled = false
-            adapter = viewPagerAdapter
-        }
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(navController, null)
     }
+
+
 }

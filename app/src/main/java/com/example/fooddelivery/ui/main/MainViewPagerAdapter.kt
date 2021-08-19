@@ -16,7 +16,7 @@ class MainViewPagerAdapter (requireActivity: FragmentActivity) : FragmentStateAd
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> HomeFragment()
-            1 -> RestaurantFragment()
+            1 -> HomeFragment()
             2 -> ProfileFragment()
             else -> HomeFragment()
         }
