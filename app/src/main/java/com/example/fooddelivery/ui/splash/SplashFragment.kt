@@ -1,6 +1,7 @@
 package com.example.fooddelivery.ui.splash
 
 import android.animation.Animator
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -39,19 +40,22 @@ class SplashFragment : Fragment() {
             override fun onAnimationStart(animation: Animator?) {}
 
             override fun onAnimationEnd(animation: Animator?) {
-
-                val token = getTokenFromLocal()
-                if (!token.isNullOrEmpty()) {
-                    val jwt = JWT(token)
-                    if (!jwt.isExpired(0)) {
-                        val intent = Intent(requireContext(), MainActivity::class.java)
-                        startActivity(intent)
-                        requireActivity().finish()
-                    }else{
+                if(isOnboardingFinished()) {
+                    val token = getTokenFromLocal()
+                    if (!token.isNullOrEmpty()) {
+                        val jwt = JWT(token)
+                        if (!jwt.isExpired(0)) {
+                            val intent = Intent(requireContext(), MainActivity::class.java)
+                            startActivity(intent)
+                            requireActivity().finish()
+                        } else {
+                            goToLoginFragment()
+                        }
+                    } else {
                         goToLoginFragment()
                     }
                 }else{
-                    goToLoginFragment()
+                    goToOnboardingFragment()
                 }
             }
 
@@ -61,8 +65,17 @@ class SplashFragment : Fragment() {
         })
     }
 
+    private fun isOnboardingFinished(): Boolean {
+        val sharedPref = requireActivity().getSharedPreferences("onboarding", Context.MODE_PRIVATE)
+        return sharedPref.getBoolean("finished", false)
+    }
+
     private fun goToLoginFragment(){
         findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+    }
+
+    private fun goToOnboardingFragment(){
+        findNavController().navigate(R.id.action_splashFragment_to_onboardingFragment)
     }
 
     private fun getTokenFromLocal(): String? {
