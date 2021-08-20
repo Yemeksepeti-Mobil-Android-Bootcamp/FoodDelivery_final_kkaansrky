@@ -25,8 +25,8 @@
             android:src="@drawable/ic_home_profile"
             app:shapeAppearanceOverlay="@style/CircularImageView" />
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/homeSearchView"
+        <EditText
+            android:id="@+id/homeSearchEditText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
