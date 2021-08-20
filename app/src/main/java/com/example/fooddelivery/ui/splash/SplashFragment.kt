@@ -3,16 +3,14 @@ package com.example.fooddelivery.ui.splash
 import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.auth0.android.jwt.JWT
 import com.example.fooddelivery.R
 import com.example.fooddelivery.data.local.SharedPrefManager
-import com.example.fooddelivery.databinding.ActivitySplashBinding
 import com.example.fooddelivery.databinding.FragmentSplashBinding
 import com.example.fooddelivery.ui.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint

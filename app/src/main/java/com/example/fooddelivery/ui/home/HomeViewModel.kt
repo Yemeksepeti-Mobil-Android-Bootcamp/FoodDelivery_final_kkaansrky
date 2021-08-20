@@ -6,8 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.example.fooddelivery.data.ApiRepository
 import com.example.fooddelivery.data.entity.Category
 import com.example.fooddelivery.data.entity.restaurant.RestaurantListResponse
-import com.example.fooddelivery.data.entity.restaurant.RestaurantResponse
-import com.example.fooddelivery.data.entity.user.UserResponse
 import com.example.fooddelivery.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
