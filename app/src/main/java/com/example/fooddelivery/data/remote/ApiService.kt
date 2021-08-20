@@ -30,7 +30,9 @@ interface ApiService {
     @GET("a/restaurant/{id}")
     suspend fun getRestaurantById(@Path("id") id: String): Response<RestaurantResponse>
 
+    @GET("a/restaurant/cuisine/{cuisineName}")
+    suspend fun getRestaurantsByCuisine(@Path("cuisineName") cuisine: String): Response<RestaurantListResponse>
+
     @GET("a/meal/{id}")
     suspend fun getMealById(@Path("id") id: String): Response<MealResponse>
-
 }
