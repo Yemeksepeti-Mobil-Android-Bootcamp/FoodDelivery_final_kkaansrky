@@ -25,8 +25,8 @@
             android:src="@drawable/ic_home_profile"
             app:shapeAppearanceOverlay="@style/CircularImageView" />
 
-        <EditText
-            android:id="@+id/homeSearchEditText"
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/homeSearchView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
@@ -34,9 +34,7 @@
             android:background="@drawable/login_custom_input"
             android:drawableStart="@drawable/ic_search"
             android:drawablePadding="12dp"
-            android:ems="10"
             android:hint="@string/search"
-            android:inputType="text"
             android:padding="16dp" />
 
     </LinearLayout>

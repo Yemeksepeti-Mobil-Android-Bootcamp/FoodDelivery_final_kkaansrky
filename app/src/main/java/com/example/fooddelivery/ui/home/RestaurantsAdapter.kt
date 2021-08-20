@@ -2,12 +2,10 @@ package com.example.fooddelivery.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.fooddelivery.R
-import com.example.fooddelivery.data.entity.restaurant.Restaurant
-import com.example.fooddelivery.databinding.ItemHomeRestaurantBinding
+import com.example.fooddelivery.data.entity.Restaurant
+import com.example.fooddelivery.databinding.ItemHomeCategoriesBinding
+import com.example.fooddelivery.databinding.ItemHomeRestaurantsBinding
 
 class RestaurantsAdapter: RecyclerView.Adapter<RestaurantsAdapter.RestaurantsViewHolder>() {
 
