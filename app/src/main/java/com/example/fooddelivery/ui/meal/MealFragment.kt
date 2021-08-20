@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.fooddelivery.R
 import com.example.fooddelivery.databinding.FragmentMealBinding
 import com.example.fooddelivery.utils.Resource
@@ -58,6 +59,12 @@ class MealFragment : Fragment() {
                         mealDescriptionTextView.text = meal.description
                         val price = meal.price + " TL"
                         mealPriceTextView.text = price
+
+                        Glide
+                            .with(requireContext())
+                            .load(meal.image)
+                            .placeholder(R.drawable.temp_meal)
+                            .into(mealImageView)
 
                         setIngredientsChips(meal.ingredients)
                     }
