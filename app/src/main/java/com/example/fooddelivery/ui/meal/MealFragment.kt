@@ -1,5 +1,6 @@
 package com.example.fooddelivery.ui.meal
 
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -100,6 +101,13 @@ class MealFragment : Fragment() {
             val mChip =
                 this.layoutInflater.inflate(R.layout.item_meal_ingredient, null, false) as Chip
             mChip.setText(ingredient)
+            mChip.setOnClickListener{
+                if (mChip.paintFlags == Paint.STRIKE_THRU_TEXT_FLAG){
+                    mChip.paintFlags = 0
+                }else {
+                    mChip.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                }
+            }
 
             binding.chipGroup.addView(mChip)
         }
