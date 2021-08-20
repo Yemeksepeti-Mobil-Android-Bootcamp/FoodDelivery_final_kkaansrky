@@ -10,6 +10,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ApiService {
     @POST("auth/login")
@@ -23,4 +24,7 @@ interface ApiService {
 
     @GET("a/restaurant")
     suspend fun getRestaurants(): Response<RestaurantListResponse>
+
+    @GET("a/restaurant/cuisine/{cuisineName}")
+    suspend fun getRestaurantsByCuisine(@Path("cuisineName") cuisine: String): Response<RestaurantListResponse>
 }

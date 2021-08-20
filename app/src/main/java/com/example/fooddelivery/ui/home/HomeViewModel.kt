@@ -4,10 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.fooddelivery.data.ApiRepository
-import com.example.fooddelivery.data.entity.Category
+import com.example.fooddelivery.data.entity.restaurant.Restaurant
 import com.example.fooddelivery.data.entity.restaurant.RestaurantListResponse
-import com.example.fooddelivery.data.entity.restaurant.RestaurantResponse
-import com.example.fooddelivery.data.entity.user.UserResponse
 import com.example.fooddelivery.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -18,16 +16,52 @@ class HomeViewModel @Inject constructor(
     private var apiRepository: ApiRepository
 ) : ViewModel() {
 
+    var restaurantsList: List<Restaurant>? = null
+    var categoriesList = arrayListOf<String>("All")
+
     fun getRestaurantsList(): LiveData<Resource<RestaurantListResponse>> {
         return apiRepository.getRestaurants()
     }
 
-    fun getTestItemCategoriesList(): ArrayList<Category> {
-        val categoriesList = ArrayList<Category>()
+    fun getRestaurantByCuisine(cuisine: String): LiveData<Resource<RestaurantListResponse>> {
+        return apiRepository.getRestaurantByCuisine(cuisine)
+    }
 
-        categoriesList.add(Category(1, "Hamburger"))
-        categoriesList.add(Category(2, "Salad"))
-        categoriesList.add(Category(3, "Pizza"))
+    fun getAndSetCategoryListFromRestaurants(): ArrayList<String> {
+        if (restaurantsList != null){
+            for (restaurant in restaurantsList!!){
+                if (categoriesList.find { category ->
+                        category == restaurant.cuisine
+                    } ==null){
+                    categoriesList.add(restaurant.cuisine)
+                }
+            }
+        }
+        return categoriesList
+    }
+
+    fun searchRestaurantsGetFilteredList(text: String?): List<Restaurant>? {
+        if (text.isNullOrEmpty()){
+            return restaurantsList
+        }
+
+        val filteredRestaurantList: MutableList<Restaurant> = mutableListOf()
+        restaurantsList?.forEach { restaurant ->
+            if (restaurant.name.contains(text, true)){
+                filteredRestaurantList.add(restaurant)
+            }else if (restaurant.district.contains(text, true)){
+                filteredRestaurantList.add(restaurant)
+            }
+        }
+        return filteredRestaurantList
+    }
+
+    fun getTestItemCategoriesList(): ArrayList<String> {
+        val categoriesList = ArrayList<String>()
+
+        categoriesList.add("Hamburger")
+        categoriesList.add("Salad")
+        categoriesList.add("Pizza")
 
         return categoriesList
     }
