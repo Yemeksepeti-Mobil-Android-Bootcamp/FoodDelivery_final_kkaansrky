@@ -1,6 +1,7 @@
 package com.example.fooddelivery.data
 
 import com.example.fooddelivery.data.entity.login.LoginRequest
+import com.example.fooddelivery.data.entity.order.OrdersRequest
 import com.example.fooddelivery.data.entity.register.RegisterRequest
 import com.example.fooddelivery.data.local.LocalDataSource
 import com.example.fooddelivery.data.remote.RemoteDataSource
@@ -30,6 +31,11 @@ class ApiRepository @Inject constructor(
             localDataSource.saveToken(it)
         }
     )
+
+    fun postOrders(request: OrdersRequest) =
+        performNetworkOperation {
+            remoteDataSource.postOrders(request)
+        }
 
     fun logOutUser(){
         localDataSource.saveToken("")
@@ -61,14 +67,18 @@ class ApiRepository @Inject constructor(
         }
 
     fun listOrders():List<LocalOrder> {
-        return localDataSource.listOrders()
+        return localDataSource.listLocalOrders()
     }
 
     fun addOrder(localOrder : LocalOrder){
-        localDataSource.addOrder(localOrder)
+        localDataSource.addLocalOrder(localOrder)
     }
 
     fun removeOrder(localOrder : LocalOrder){
-        localDataSource.removeOrder(localOrder)
+        localDataSource.removeLocalOrder(localOrder)
+    }
+
+    fun getLocalOrderById(): LocalOrder {
+        return localDataSource.getLocalOrderById()
     }
 }

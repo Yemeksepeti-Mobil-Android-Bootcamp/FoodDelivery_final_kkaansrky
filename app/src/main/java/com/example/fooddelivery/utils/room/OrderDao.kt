@@ -10,7 +10,7 @@ interface OrderDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addOrder(order: LocalOrder)
 
-    @Query("SELECT * FROM localorder WHERE restaurantID=:orderID LIMIT 1")
+    @Query("SELECT * FROM localorder WHERE id=:orderID LIMIT 1")
     fun getOrderById(orderID: String): LocalOrder
 
     @Delete

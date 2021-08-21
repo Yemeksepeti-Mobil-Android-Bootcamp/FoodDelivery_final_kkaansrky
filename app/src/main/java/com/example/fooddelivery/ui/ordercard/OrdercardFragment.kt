@@ -42,14 +42,51 @@ class OrdercardFragment : Fragment() {
     }
 
     private fun initViews() {
-        val ordersList = viewModel.getOrderFromRoomDb()
-        val order = ordersList.get(0)
 
-        setOrdersRecyclerView(ArrayList(order.meals))
 
-        Log.d(TAG, "initViews: "+order.meals.size)
+        val order = viewModel.getLocalOrderById()
+        val localMealList = order.meals
+        if (!localMealList.isEmpty()) {
 
-        viewModel.getRestaurantByID(order.restaurantID).observe(viewLifecycleOwner,{
+            setOrdersRecyclerView(ArrayList(localMealList))
+            Log.d(TAG, "initViews: " + localMealList.size)
+            setPriceTextView(localMealList)
+            setRestaurantNameTextView(order.restaurantID)
+
+            setOrderNowButtonClickListener(order.restaurantID, localMealList)
+        }
+
+    }
+
+    private fun setOrderNowButtonClickListener(restaurantID: String, localMealList: List<Meal>) {
+        binding.orderButton.setOnClickListener {
+            viewModel.setOrdersRequestObjectAndPost(restaurantID,localMealList).observe(viewLifecycleOwner, {
+                when (it.status) {
+                    Resource.Status.LOADING -> {
+                        //binding.progressBar.visibility = View.VISIBLE
+                    }
+                    Resource.Status.SUCCESS -> {
+                        Toast.makeText(
+                            activity,
+                            "Order Complete",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    Resource.Status.ERROR -> {
+                        //binding.progressBar.visibility = View.GONE
+                        Toast.makeText(
+                            activity,
+                            "Order Error",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            })
+        }
+    }
+
+    private fun setRestaurantNameTextView(restaurantID: String) {
+        viewModel.getRestaurantByID(restaurantID).observe(viewLifecycleOwner, {
 
             when (it.status) {
                 Resource.Status.LOADING -> {
@@ -64,11 +101,23 @@ class OrdercardFragment : Fragment() {
                 }
                 Resource.Status.ERROR -> {
                     //binding.progressBar.visibility = View.GONE
-                    Toast.makeText(activity, "The restaurant could not be brought", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        activity,
+                        "The restaurant could not be brought",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         })
+    }
 
+    private fun setPriceTextView(localMealList: List<Meal>) {
+        var topPrice = 0f
+        for (item in localMealList) {
+            topPrice = topPrice.plus((item.quantity * item.price.toFloat()))
+        }
+
+        binding.priceTextView.text = topPrice.toString() + " TL"
     }
 
     private fun setOrdersRecyclerView(ordersList: ArrayList<Meal>) {

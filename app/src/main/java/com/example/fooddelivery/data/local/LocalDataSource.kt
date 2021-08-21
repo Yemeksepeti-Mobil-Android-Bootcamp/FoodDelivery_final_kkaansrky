@@ -18,13 +18,17 @@ class LocalDataSource @Inject constructor(
         return sharedPrefManager.getToken()
     }
 
-    fun listOrders(): List<LocalOrder> = orderDao.listOrders()
+    fun listLocalOrders(): List<LocalOrder> = orderDao.listOrders()
 
-    fun addOrder(localOrder: LocalOrder) {
+    fun addLocalOrder(localOrder: LocalOrder) {
         orderDao.addOrder(localOrder)
     }
 
-    fun removeOrder(localOrder: LocalOrder) {
+    fun removeLocalOrder(localOrder: LocalOrder) {
         orderDao.removeOrder(localOrder)
+    }
+
+    fun getLocalOrderById(): LocalOrder {
+       return orderDao.getOrderById("1")
     }
 }

@@ -7,6 +7,7 @@ import com.example.fooddelivery.data.entity.meal.Meal
 
 @Entity
 data class LocalOrder(
-    @PrimaryKey var restaurantID: String,
+    @PrimaryKey var id: String,
+    @ColumnInfo var restaurantID: String,
     @ColumnInfo(name = "meals") var meals: List<Meal>
 )
