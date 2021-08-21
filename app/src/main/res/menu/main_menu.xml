@@ -5,7 +5,7 @@
         android:title="@string/home"
         android:icon="@drawable/ic_home" />
     <item
-        android:id="@+id/restaurantFragment"
+        android:id="@+id/ordercardFragment"
         android:title="@string/basket"
         android:icon="@drawable/ic_basket" />
     <item

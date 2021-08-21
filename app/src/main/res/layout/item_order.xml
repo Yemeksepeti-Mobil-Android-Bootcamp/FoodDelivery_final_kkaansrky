@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemCardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/orange"
+    android:padding="16dp"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp">
+
+        <ImageView
+            android:id="@+id/mealImageView"
+            android:layout_width="125dp"
+            android:layout_height="100dp"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@string/categorieimage"
+            android:src="@drawable/temp_meal" />
+
+        <TextView
+            android:id="@+id/mealNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/raleway_bold"
+            android:textSize="16sp"
+            android:layout_margin="8dp"
+            android:textStyle="bold"
+            tools:text="Hamburger" />
+
+        <TextView
+            android:id="@+id/mealDescriptionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mealNameTextView"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_toStartOf="@id/mealImageView"
+            android:fontFamily="@font/raleway_bold"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="80 gr. %100 dana eti, turşu, özel sos, patates kızartması" />
+
+        <TextView
+            android:id="@+id/mealCountTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mealDescriptionTextView"
+            android:layout_marginHorizontal="16dp"
+            android:fontFamily="@font/raleway_bold"
+            android:textColor="@color/teal_200"
+            android:textSize="18sp"
+            tools:text="1 quantity" />
+
+        <TextView
+            android:id="@+id/mealPriceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mealDescriptionTextView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginHorizontal="16dp"
+            android:fontFamily="@font/raleway_bold"
+            android:textColor="@color/teal_200"
+            android:textSize="18sp"
+            tools:text="20,00 TL" />
+
+
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

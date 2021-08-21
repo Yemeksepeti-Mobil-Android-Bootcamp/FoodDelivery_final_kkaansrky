@@ -103,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:elevation="0dp"
-                android:background="@color/purple_200"
+                android:background="@drawable/custom_cardview"
                 app:layout_collapseMode="pin">
 
                 <LinearLayout

@@ -3,11 +3,11 @@
     <item android:state_pressed="false">
         <shape android:shape="rectangle">
             <corners
-                android:bottomLeftRadius="30dp"
-                android:bottomRightRadius="30dp"
+                android:bottomLeftRadius="8dp"
+                android:bottomRightRadius="8dp"
                 android:radius="60dp"
-                android:topLeftRadius="30dp"
-                android:topRightRadius="30dp" />
+                android:topLeftRadius="8dp"
+                android:topRightRadius="8dp" />
             <solid android:color="@color/login" />
             <padding
                 android:bottom="0dp"
@@ -22,11 +22,11 @@
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
             <corners
-                android:bottomLeftRadius="30dp"
-                android:bottomRightRadius="30dp"
+                android:bottomLeftRadius="8dp"
+                android:bottomRightRadius="8dp"
                 android:radius="60dp"
-                android:topLeftRadius="30dp"
-                android:topRightRadius="30dp" />
+                android:topLeftRadius="8dp"
+                android:topRightRadius="8dp" />
             <solid android:color="@color/black" />
             <padding
                 android:bottom="0dp"

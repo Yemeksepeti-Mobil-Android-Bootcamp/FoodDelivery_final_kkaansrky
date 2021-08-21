@@ -6,6 +6,7 @@ import com.example.fooddelivery.data.local.LocalDataSource
 import com.example.fooddelivery.data.remote.RemoteDataSource
 import com.example.fooddelivery.utils.performAuthTokenNetworkOperation
 import com.example.fooddelivery.utils.performNetworkOperation
+import com.example.fooddelivery.utils.room.LocalOrder
 import javax.inject.Inject
 
 class ApiRepository @Inject constructor(
@@ -58,4 +59,16 @@ class ApiRepository @Inject constructor(
         performNetworkOperation {
             remoteDataSource.getMealById(id)
         }
+
+    fun listOrders():List<LocalOrder> {
+        return localDataSource.listOrders()
+    }
+
+    fun addOrder(localOrder : LocalOrder){
+        localDataSource.addOrder(localOrder)
+    }
+
+    fun removeOrder(localOrder : LocalOrder){
+        localDataSource.removeOrder(localOrder)
+    }
 }

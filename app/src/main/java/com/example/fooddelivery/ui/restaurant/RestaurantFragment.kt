@@ -75,6 +75,8 @@ class RestaurantFragment : Fragment() {
                             .load(restaurant.image)
                             .placeholder(R.drawable.temp_meal)
                             .into(restaurantImageView)
+
+                        viewModel.addRestaurantIdInRoom(restaurant.id)
                     }
 
                     setMealsRecyclerView(restaurant.meals)
