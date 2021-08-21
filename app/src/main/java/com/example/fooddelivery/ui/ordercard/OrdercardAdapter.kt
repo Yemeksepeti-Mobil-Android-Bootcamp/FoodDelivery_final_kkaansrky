@@ -24,9 +24,9 @@ class OrdercardAdapter : RecyclerView.Adapter<OrdercardAdapter.OrdercardViewHold
         holder.binding.apply {
             mealNameTextView.text = order.name
             mealDescriptionTextView.text = order.description
-            mealPriceTextView.text = (order.price.toFloat() * order.quantity).toString()
+            mealPriceTextView.text = (order.price.toFloat() * order.quantity).toString()+" TL"
 
-            mealCountTextView.text = order.quantity.toString()
+            mealCountTextView.text = order.quantity.toString()+ " quantity"
 
             Glide
                 .with(holder.itemView.context)

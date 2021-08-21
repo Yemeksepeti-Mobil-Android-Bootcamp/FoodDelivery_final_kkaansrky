@@ -1,8 +1,10 @@
 package com.example.fooddelivery.data.remote
 
+import com.example.fooddelivery.data.entity.order.OrdersRequest
 import com.example.fooddelivery.data.entity.login.LoginRequest
 import com.example.fooddelivery.data.entity.login.LoginResponse
 import com.example.fooddelivery.data.entity.meal.MealResponse
+import com.example.fooddelivery.data.entity.order.OrdersResponse
 import com.example.fooddelivery.data.entity.register.RegisterRequest
 import com.example.fooddelivery.data.entity.register.RegisterResponse
 import com.example.fooddelivery.data.entity.restaurant.RestaurantListResponse
@@ -20,6 +22,9 @@ interface ApiService {
 
     @POST("auth/register")
     suspend fun register(@Body request: RegisterRequest): Response<RegisterResponse>
+
+    @POST("a/order/bulk")
+    suspend fun postOrders(@Body request: OrdersRequest): Response<OrdersResponse>
 
     @GET("auth/profile")
     suspend fun getUser() : Response<UserResponse>

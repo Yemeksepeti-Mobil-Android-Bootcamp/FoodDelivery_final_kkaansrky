@@ -20,14 +20,31 @@ class RestaurantViewModel @Inject constructor(
     fun getRestaurantDetail(id: String): LiveData<Resource<RestaurantResponse>> =
         apiRepository.getRestaurantById(id)
 
-    fun addRestaurantIdInRoom(restaurantID: String){
-        apiRepository.addOrder(LocalOrder(restaurantID,getMealsInRoom()))
+    fun addRestaurantIdInRoom(restaurantID: String) {
+        val mealList = checkRestaurantId(restaurantID)
+        apiRepository.addOrder(LocalOrder("1", restaurantID, mealList))
+    }
+
+    private fun checkRestaurantId(restaurantID: String): List<Meal> {
+        val order = apiRepository.getLocalOrderById()
+        if (order != null){
+            if (restaurantID != order.restaurantID){
+                return emptyList()
+            }else{
+                return getMealsInRoom()
+            }
+        }else {
+            return emptyList()
+        }
     }
 
     fun getMealsInRoom(): List<Meal> {
-        val list =apiRepository.listOrders()
-        val order = list.get(0)
-        return order.meals
+        val order = apiRepository.getLocalOrderById()
+        if (order.meals.isEmpty()) {
+            return emptyList()
+        } else {
+            return order.meals
+        }
     }
 
     fun getTestItemMealsList(): ArrayList<Meal> {
@@ -40,7 +57,7 @@ class RestaurantViewModel @Inject constructor(
                 "https://cdn.yemek.com/mncrop/940/625/uploads/2016/05/ev-yapimi-hamburger.jpg",
                 ArrayList(),
                 "Hamburger",
-                "50,00 TL",1
+                "50,00 TL", 1
             )
         )
         mealsList.add(
@@ -50,7 +67,7 @@ class RestaurantViewModel @Inject constructor(
                 "https://thehealthyfoodie.com/wp-content/uploads/2013/03/Tuna-and-Grilled-Zucchini-Salad-6.jpg",
                 ArrayList(),
                 "Salad",
-                "25,00 TL",1
+                "25,00 TL", 1
             )
         )
         mealsList.add(

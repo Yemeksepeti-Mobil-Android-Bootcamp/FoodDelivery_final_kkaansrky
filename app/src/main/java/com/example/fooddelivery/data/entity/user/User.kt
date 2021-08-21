@@ -3,6 +3,8 @@ package com.example.fooddelivery.data.entity.user
 import com.google.gson.annotations.SerializedName
 
 data class User(
+    @SerializedName("role")
+    val role: String,
     @SerializedName("about")
     val about: String,
     @SerializedName("createdAt")

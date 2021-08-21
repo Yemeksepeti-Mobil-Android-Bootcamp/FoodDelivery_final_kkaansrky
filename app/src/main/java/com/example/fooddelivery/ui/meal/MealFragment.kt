@@ -100,20 +100,20 @@ class MealFragment : Fragment() {
                         setIngredientsChips(meal.ingredients)
 
                         mealOrderButton.setOnClickListener{
-                            val list = viewModel.getOrderFromRoomDb()
-                            val order = list.get(0)
+                            val localOrderList = viewModel.getOrderFromRoomDb()
+                            val localOrder = localOrderList.get(0)
                             meal.quantity = orderCount
 
                             //Burası aşırı spagetti oldu ama amacım eğer orderda zaten bu yemek varsa
                             // o yemeğin countunu siapriş edilmek istenen kadar arttırmaktı.
-                            val findOrder = order.meals.find { it.id == meal.id }
+                            val findOrder = localOrder.meals.find { it.id == meal.id }
                             if (findOrder != null){
-                                order.meals.find { it.id == meal.id }!!.quantity = order.meals.find { it.id == meal.id }!!.quantity + orderCount
+                                localOrder.meals.find { it.id == meal.id }!!.quantity = localOrder.meals.find { it.id == meal.id }!!.quantity + orderCount
                             }else {
-                                order.meals = order.meals + meal
+                                localOrder.meals = localOrder.meals.plus(meal)
                             }
 
-                            viewModel.setOrderInRoomDb(order)
+                            viewModel.setOrderInRoomDb(localOrder)
                         }
                     }
                 }
