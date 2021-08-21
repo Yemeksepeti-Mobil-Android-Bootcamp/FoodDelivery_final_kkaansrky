@@ -27,13 +27,13 @@ class RestaurantViewModel @Inject constructor(
 
     private fun checkRestaurantId(restaurantID: String): List<Meal> {
         val order = apiRepository.getLocalOrderById()
-        if (order != null){
-            if (restaurantID != order.restaurantID){
+        if (order != null) {
+            if (restaurantID != order.restaurantID) {
                 return emptyList()
-            }else{
+            } else {
                 return getMealsInRoom()
             }
-        }else {
+        } else {
             return emptyList()
         }
     }

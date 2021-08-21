@@ -5,8 +5,6 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.fooddelivery.data.ApiRepository
 import com.example.fooddelivery.data.entity.meal.MealResponse
-import com.example.fooddelivery.data.entity.restaurant.Restaurant
-import com.example.fooddelivery.data.entity.restaurant.RestaurantResponse
 import com.example.fooddelivery.utils.Resource
 import com.example.fooddelivery.utils.room.LocalOrder
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,8 +20,8 @@ class MealViewModel @Inject constructor (
         return apiRepository.getMealById(id)
     }
 
-    fun getOrderFromRoomDb(): List<LocalOrder> {
-        return apiRepository.listOrders()
+    fun getOrderFromRoomDb(): LocalOrder {
+        return apiRepository.getLocalOrderById()
     }
 
     fun setOrderInRoomDb(localOrder: LocalOrder){

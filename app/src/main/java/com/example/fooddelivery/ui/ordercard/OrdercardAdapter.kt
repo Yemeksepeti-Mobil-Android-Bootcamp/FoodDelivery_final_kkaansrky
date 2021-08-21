@@ -23,10 +23,11 @@ class OrdercardAdapter : RecyclerView.Adapter<OrdercardAdapter.OrdercardViewHold
 
         holder.binding.apply {
             mealNameTextView.text = order.name
-            mealDescriptionTextView.text = order.description
-            mealPriceTextView.text = (order.price.toFloat() * order.quantity).toString()+" TL"
-
-            mealCountTextView.text = order.quantity.toString()+ " quantity"
+            mealDescriptionTextView.text = order.ingredients.toString()
+            val priceText = (order.price.toFloat() * order.quantity).toString() + " TL"
+            mealPriceTextView.text = priceText
+            val countText = order.quantity.toString() + " quantity"
+            mealCountTextView.text = countText
 
             Glide
                 .with(holder.itemView.context)
@@ -46,5 +47,6 @@ class OrdercardAdapter : RecyclerView.Adapter<OrdercardAdapter.OrdercardViewHold
 
     override fun getItemCount(): Int = ordersList.size
 
-    inner class OrdercardViewHolder(val binding: ItemOrderBinding): RecyclerView.ViewHolder(binding.root)
+    inner class OrdercardViewHolder(val binding: ItemOrderBinding) :
+        RecyclerView.ViewHolder(binding.root)
 }
