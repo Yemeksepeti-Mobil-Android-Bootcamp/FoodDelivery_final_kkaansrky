@@ -14,5 +14,6 @@ data class Meal(
     @SerializedName("name")
     val name: String,
     @SerializedName("price")
-    val price: String
+    val price: String,
+    var quantity: Int
 )

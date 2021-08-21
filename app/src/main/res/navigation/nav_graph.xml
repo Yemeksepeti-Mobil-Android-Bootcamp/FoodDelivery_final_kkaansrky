@@ -40,4 +40,9 @@
             android:name="mealId"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/ordercardFragment"
+        android:name="com.example.fooddelivery.ui.ordercard.OrdercardFragment"
+        android:label="fragment_ordercard"
+        tools:layout="@layout/fragment_ordercard" />
 </navigation>

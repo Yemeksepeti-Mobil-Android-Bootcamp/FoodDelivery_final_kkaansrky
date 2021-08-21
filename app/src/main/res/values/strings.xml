@@ -49,6 +49,7 @@
     <string name="minusorder">minusOrder</string>
     <string name="plus">plus</string>
     <string name="order_now">Order Now</string>
+    <string name="_1">1</string>
 
     <!-- Profile Strings -->
     <string name="logout">Log Out</string>
@@ -61,6 +62,9 @@
     <string name="firsonboardingimage">firsOnboardingImage</string>
     <string name="secononboardingimage">seconOnboardingImage</string>
     <string name="thirdonboardingimage">thirdOnboardingImage</string>
+
+    <!-- Ordercard Strings -->
+    <string name="confirm_order">Confirm Order</string>
 
 
 </resources>

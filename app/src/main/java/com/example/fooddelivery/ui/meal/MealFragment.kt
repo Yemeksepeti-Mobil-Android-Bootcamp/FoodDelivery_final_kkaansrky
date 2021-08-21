@@ -24,6 +24,9 @@ class MealFragment : Fragment() {
     private val viewModel: MealViewModel by viewModels()
     private val args: MealFragmentArgs by navArgs()
 
+    private var orderCount = 1
+    private var mealPrice = 1f
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,10 +46,37 @@ class MealFragment : Fragment() {
 
     private fun initViews() {
         setMealDetails()
+        setOrderCountCardListener()
+    }
+
+    private fun setOrderCountCardListener() {
+        binding.apply {
+            mealPlusButton.setOnClickListener {
+                orderCount++
+                setOrderCountText(orderCount)
+            }
+
+            mealMinusButton.setOnClickListener {
+                if (orderCount > 1) {
+                    orderCount--
+                    setOrderCountText(orderCount)
+                }
+            }
+        }
+    }
+
+    private fun setOrderCountText(orderCount: Int) {
+        binding.mealCountTextView.text = orderCount.toString()
+        setMealPriceText()
+    }
+
+    private fun setMealPriceText() {
+        val priceText = (mealPrice*orderCount).toString() + " TL"
+        binding.mealPriceTextView.text = priceText
     }
 
     private fun setMealDetails() {
-        viewModel.getMealDetails(args.mealId).observe(viewLifecycleOwner,{
+        viewModel.getMealDetails(args.mealId).observe(viewLifecycleOwner, {
             when (it.status) {
                 Resource.Status.LOADING -> {
                     //binding.progressBar.visibility = View.VISIBLE
@@ -58,8 +88,8 @@ class MealFragment : Fragment() {
                     binding.apply {
                         mealNameTextView.text = meal.name
                         mealDescriptionTextView.text = meal.description
-                        val price = meal.price + " TL"
-                        mealPriceTextView.text = price
+                        mealPrice=  meal.price.toFloat()
+                        setMealPriceText()
 
                         Glide
                             .with(requireContext())
@@ -68,11 +98,32 @@ class MealFragment : Fragment() {
                             .into(mealImageView)
 
                         setIngredientsChips(meal.ingredients)
+
+                        mealOrderButton.setOnClickListener{
+                            val list = viewModel.getOrderFromRoomDb()
+                            val order = list.get(0)
+                            meal.quantity = orderCount
+
+                            //Burası aşırı spagetti oldu ama amacım eğer orderda zaten bu yemek varsa
+                            // o yemeğin countunu siapriş edilmek istenen kadar arttırmaktı.
+                            val findOrder = order.meals.find { it.id == meal.id }
+                            if (findOrder != null){
+                                order.meals.find { it.id == meal.id }!!.quantity = order.meals.find { it.id == meal.id }!!.quantity + orderCount
+                            }else {
+                                order.meals = order.meals + meal
+                            }
+
+                            viewModel.setOrderInRoomDb(order)
+                        }
                     }
                 }
                 Resource.Status.ERROR -> {
                     //binding.progressBar.visibility = View.GONE
-                    Toast.makeText(activity, "The restaurant could not be brought", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        activity,
+                        "The restaurant could not be brought",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         })
@@ -96,15 +147,15 @@ class MealFragment : Fragment() {
         return ingredients
     }
 
-    private fun setIngredientsChips(ingredients : ArrayList<String>) {
-        for (ingredient in ingredients){
+    private fun setIngredientsChips(ingredients: ArrayList<String>) {
+        for (ingredient in ingredients) {
             val mChip =
                 this.layoutInflater.inflate(R.layout.item_meal_ingredient, null, false) as Chip
             mChip.setText(ingredient)
-            mChip.setOnClickListener{
-                if (mChip.paintFlags == Paint.STRIKE_THRU_TEXT_FLAG){
+            mChip.setOnClickListener {
+                if (mChip.paintFlags == Paint.STRIKE_THRU_TEXT_FLAG) {
                     mChip.paintFlags = 0
-                }else {
+                } else {
                     mChip.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 }
             }
