@@ -10,11 +10,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.example.fooddelivery.R
 import com.example.fooddelivery.data.entity.meal.Meal
 import com.example.fooddelivery.databinding.FragmentOrdercardBinding
-import com.example.fooddelivery.ui.restaurant.MealsAdapter
 import com.example.fooddelivery.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -117,7 +114,8 @@ class OrdercardFragment : Fragment() {
             topPrice = topPrice.plus((item.quantity * item.price.toFloat()))
         }
 
-        binding.priceTextView.text = topPrice.toString() + " TL"
+        val priceText = topPrice.toString() + " TL"
+        binding.priceTextView.text = priceText
     }
 
     private fun setOrdersRecyclerView(ordersList: ArrayList<Meal>) {

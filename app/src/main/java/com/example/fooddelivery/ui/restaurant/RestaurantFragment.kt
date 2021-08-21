@@ -64,7 +64,7 @@ class RestaurantFragment : Fragment() {
                         restaurantNameTextView.text = restaurant.name
                         deliveryInfoTextView.text = restaurant.deliveryInfo
 
-                        Log.d("TAG", "setRestaurantDetails: "+restaurant.deliveryInfo)
+                        Log.d("TAG", "setRestaurantDetails: " + restaurant.deliveryInfo)
 
                         deliveryTimeTextView.text = restaurant.deliveryTime
                         minimumDeliveryFeeTextView.text = restaurant.minimumDeliveryFee
@@ -83,7 +83,11 @@ class RestaurantFragment : Fragment() {
                 }
                 Resource.Status.ERROR -> {
                     //binding.progressBar.visibility = View.GONE
-                    Toast.makeText(activity, "The restaurant could not be brought", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        activity,
+                        "The restaurant could not be brought",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -71,7 +72,7 @@ class MealFragment : Fragment() {
     }
 
     private fun setMealPriceText() {
-        val priceText = (mealPrice*orderCount).toString() + " TL"
+        val priceText = (mealPrice * orderCount).toString() + " TL"
         binding.mealPriceTextView.text = priceText
     }
 
@@ -88,7 +89,7 @@ class MealFragment : Fragment() {
                     binding.apply {
                         mealNameTextView.text = meal.name
                         mealDescriptionTextView.text = meal.description
-                        mealPrice=  meal.price.toFloat()
+                        mealPrice = meal.price.toFloat()
                         setMealPriceText()
 
                         Glide
@@ -99,17 +100,27 @@ class MealFragment : Fragment() {
 
                         setIngredientsChips(meal.ingredients)
 
-                        mealOrderButton.setOnClickListener{
-                            val localOrderList = viewModel.getOrderFromRoomDb()
-                            val localOrder = localOrderList.get(0)
+                        mealOrderButton.setOnClickListener {
+                            val localOrder = viewModel.getOrderFromRoomDb()
                             meal.quantity = orderCount
 
+
+                            val ingredients = ArrayList<String>()
+                            chipGroup.children.toList()
+                                .filter { !(it as Chip).isChecked }
+                                .forEach {
+                                    ingredients.add((it as Chip).text.toString())
+                                }
+
+                            meal.ingredients = ingredients
+
                             //Burası aşırı spagetti oldu ama amacım eğer orderda zaten bu yemek varsa
-                            // o yemeğin countunu siapriş edilmek istenen kadar arttırmaktı.
-                            val findOrder = localOrder.meals.find { it.id == meal.id }
-                            if (findOrder != null){
-                                localOrder.meals.find { it.id == meal.id }!!.quantity = localOrder.meals.find { it.id == meal.id }!!.quantity + orderCount
-                            }else {
+                            // o yemeğin countunu sipariş edilmek istenen kadar arttırmaktı.
+                            val findOrder =
+                                localOrder.meals.find { it.id == meal.id && it.ingredients == meal.ingredients }
+                            if (findOrder != null) {
+                                localOrder.meals.find { it.id == meal.id && it.ingredients == meal.ingredients }!!.quantity += orderCount
+                            } else {
                                 localOrder.meals = localOrder.meals.plus(meal)
                             }
 

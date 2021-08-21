@@ -38,7 +38,7 @@ class DatabaseModule {
     }
 
     @Provides
-    fun provideUserDao(appDatabase: AppDatabase): OrderDao {
+    fun provideOrderDao(appDatabase: AppDatabase): OrderDao {
         return appDatabase.orderDao()
     }
 }
