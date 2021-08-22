@@ -31,11 +31,24 @@
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
             android:autofillHints="true"
+            android:layout_weight="2"
             android:background="@drawable/login_custom_input"
             android:drawableStart="@drawable/ic_search"
             android:drawablePadding="12dp"
             android:hint="@string/search"
             android:padding="16dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/addRestaurantButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="6"
+            android:padding="16dp"
+            android:background="@drawable/login_custom_button"
+            android:visibility="visible"
+            android:layout_marginHorizontal="5dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_plus"/>
 
     </LinearLayout>
 

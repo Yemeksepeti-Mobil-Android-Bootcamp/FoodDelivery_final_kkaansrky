@@ -66,5 +66,40 @@
     <!-- Ordercard Strings -->
     <string name="confirm_order">Confirm Order</string>
 
+    <!-- Restaurant Add Strings -->
+    <string name="add_restaurant">Add Restaurant</string>
+    <string name="restaurant_image_url">Restaurant Image Url</string>
+    <string name="restaurant_min_delivery_fee">Restaurant Min Delivery Fee</string>
+    <string name="restaurant_district">Restaurant District</string>
+    <string name="restaurant_address">Restaurant Address</string>
+    <string name="restaurant_delivery_time">Restaurant Delivery Time</string>
+    <string name="restaurant_delivery_info">Restaurant Delivery Info</string>
+
+    <string-array name="RestaurantPaymentMethods">
+        <item>Online Credit/Bank Card</item>
+        <item>Credit Card</item>
+        <item>Cash</item>
+        <item>Ticket Restaurant</item>
+        <item>Sodexo Restaurant Pass</item>
+        <item>Multinet</item>
+        <item>SetCard</item>
+    </string-array>
+
+    <string-array name="cuisines">
+        <item>Seafood</item>
+        <item>Burger</item>
+        <item>Doner</item>
+        <item>Worldwide</item>
+        <item>Homemade</item>
+        <item>Breakfast</item>
+        <item>Kebab</item>
+        <item>Meatball</item>
+        <item>Pasta - Salad</item>
+        <item>Bakery</item>
+        <item>Pizza</item>
+        <item>Dessert</item>
+        <item>Eastern Kitchen</item>
+    </string-array>
+
 
 </resources>

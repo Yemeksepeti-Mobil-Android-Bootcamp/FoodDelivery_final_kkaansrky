@@ -8,11 +8,16 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddelivery.data.entity.restaurant.Restaurant
 import com.example.fooddelivery.databinding.FragmentHomeBinding
+import com.example.fooddelivery.ui.addrestaurant.AddRestaurantFragment
 import com.example.fooddelivery.utils.Resource
+import com.example.fooddelivery.utils.gone
+import com.example.fooddelivery.utils.hide
+import com.example.fooddelivery.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -56,6 +61,37 @@ class HomeFragment : Fragment(),ICategoryOnClick {
         //val restaurantsList = viewModel.getTestItemRestaurantList()
         getRestaurantsListFromViewModel()
         setSearchViewListener()
+        setRestaurantAddButtonAdminVisibility()
+    }
+
+    private fun setRestaurantAddButtonAdminVisibility() {
+        viewModel.getUser().observe(viewLifecycleOwner,{
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                    //binding.progressBar.show()
+                }
+                Resource.Status.SUCCESS -> {
+                   val role = it.data!!.user.role
+                    if (role == "admin"){
+                        binding.addRestaurantButton.show()
+                        setaddRestaurantAddButton()
+                    }else{
+                        binding.addRestaurantButton.gone()
+                    }
+                }
+                Resource.Status.ERROR ->{
+
+                }
+
+            }
+        })
+    }
+
+    private fun setaddRestaurantAddButton() {
+        binding.addRestaurantButton.setOnClickListener {
+            val dialog = AddRestaurantFragment()
+            dialog.show(requireActivity().supportFragmentManager,"Add Restaurant")
+        }
     }
 
     private fun setSearchViewListener() {

@@ -9,10 +9,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.fooddelivery.R
 import com.example.fooddelivery.data.entity.meal.Meal
 import com.example.fooddelivery.databinding.FragmentOrdercardBinding
 import com.example.fooddelivery.utils.Resource
+import com.example.fooddelivery.utils.room.LocalOrder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,8 +42,6 @@ class OrdercardFragment : Fragment() {
     }
 
     private fun initViews() {
-
-
         val order = viewModel.getLocalOrderById()
         val localMealList = order.meals
         if (!localMealList.isEmpty()) {
@@ -51,34 +52,45 @@ class OrdercardFragment : Fragment() {
             setRestaurantNameTextView(order.restaurantID)
 
             setOrderNowButtonClickListener(order.restaurantID, localMealList)
+        } else {
+            Toast.makeText(
+                activity,
+                "Card Empty",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
     }
 
     private fun setOrderNowButtonClickListener(restaurantID: String, localMealList: List<Meal>) {
         binding.orderButton.setOnClickListener {
-            viewModel.setOrdersRequestObjectAndPost(restaurantID,localMealList).observe(viewLifecycleOwner, {
-                when (it.status) {
-                    Resource.Status.LOADING -> {
-                        //binding.progressBar.visibility = View.VISIBLE
+            viewModel.setOrdersRequestObjectAndPost(restaurantID, localMealList)
+                .observe(viewLifecycleOwner, {
+                    when (it.status) {
+                        Resource.Status.LOADING -> {
+                            //binding.progressBar.visibility = View.VISIBLE
+                        }
+                        Resource.Status.SUCCESS -> {
+                            Toast.makeText(
+                                activity,
+                                "Order Complete",
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                            viewModel.setOrderInRoomDb(LocalOrder("1", "", emptyList()))
+                            findNavController().navigate(R.id.action_ordercardFragment_self)
+                        }
+                        Resource.Status.ERROR -> {
+                            //binding.progressBar.visibility = View.GONE
+                            Toast.makeText(
+                                activity,
+                                "Order Error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
-                    Resource.Status.SUCCESS -> {
-                        Toast.makeText(
-                            activity,
-                            "Order Complete",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                    Resource.Status.ERROR -> {
-                        //binding.progressBar.visibility = View.GONE
-                        Toast.makeText(
-                            activity,
-                            "Order Error",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-            })
+                })
+
         }
     }
 

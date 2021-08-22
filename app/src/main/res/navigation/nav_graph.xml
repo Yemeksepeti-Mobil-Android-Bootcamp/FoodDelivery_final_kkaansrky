@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_restaurantFragment"
             app:destination="@id/restaurantFragment" />
+        <action
+            android:id="@+id/action_homeFragment_self"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/restaurantFragment"
@@ -44,5 +47,9 @@
         android:id="@+id/ordercardFragment"
         android:name="com.example.fooddelivery.ui.ordercard.OrdercardFragment"
         android:label="fragment_ordercard"
-        tools:layout="@layout/fragment_ordercard" />
+        tools:layout="@layout/fragment_ordercard" >
+        <action
+            android:id="@+id/action_ordercardFragment_self"
+            app:destination="@id/ordercardFragment" />
+    </fragment>
 </navigation>
