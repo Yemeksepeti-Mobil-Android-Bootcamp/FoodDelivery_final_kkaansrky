@@ -15,6 +15,15 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/update_profile"
+                android:textSize="25sp"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/raleway_bold"
+                android:textColor="@color/black"/>
+
             <EditText
                 android:id="@+id/userEmailEditText"
                 android:layout_width="match_parent"
@@ -25,6 +34,12 @@
                 android:inputType="textEmailAddress"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/userNameEditText"
@@ -66,7 +81,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:autofillHints="true"
-                android:layout_marginVertical="16dp"
                 android:background="@drawable/login_custom_input"
                 android:hint="@string/user_imageurl"
                 android:inputType="text"

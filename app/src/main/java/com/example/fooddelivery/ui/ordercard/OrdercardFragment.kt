@@ -1,8 +1,6 @@
 package com.example.fooddelivery.ui.ordercard
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,24 +40,78 @@ class OrdercardFragment : Fragment() {
     }
 
     private fun initViews() {
+        checkOrderAndUpdateUI()
+    }
+
+    private fun checkOrderAndUpdateUI() {
         val order = viewModel.getLocalOrderById()
-        val localMealList = order.meals
-        if (!localMealList.isEmpty()) {
+        if (order !=null){
+            val localMealList = order.meals
+            if (localMealList.isNotEmpty()) {
 
-            setOrdersRecyclerView(ArrayList(localMealList))
-            Log.d(TAG, "initViews: " + localMealList.size)
-            setPriceTextView(localMealList)
-            setRestaurantNameTextView(order.restaurantID)
+                setOrdersRecyclerView(ArrayList(localMealList))
+                setPriceTextView(localMealList)
+                setRestaurantNameTextView(order.restaurantID)
 
-            setOrderNowButtonClickListener(order.restaurantID, localMealList)
-        } else {
+                setOrderNowButtonClickListener(order.restaurantID, localMealList)
+            } else {
+                Toast.makeText(
+                    activity,
+                    "Card Empty",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }else {
             Toast.makeText(
                 activity,
                 "Card Empty",
                 Toast.LENGTH_SHORT
             ).show()
         }
+    }
 
+    private fun setOrdersRecyclerView(ordersList: ArrayList<Meal>) {
+        binding.orderRecyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+        ordercardAdapter.setOrdersList(ordersList)
+
+        binding.orderRecyclerView.adapter = ordercardAdapter
+    }
+
+    private fun setPriceTextView(localMealList: List<Meal>) {
+        var topPrice = 0f
+        for (item in localMealList) {
+            topPrice = topPrice.plus((item.quantity * item.price.toFloat()))
+        }
+
+        val priceText = topPrice.toString() + " TL"
+        binding.priceTextView.text = priceText
+    }
+
+    private fun setRestaurantNameTextView(restaurantID: String) {
+        viewModel.getRestaurantByID(restaurantID).observe(viewLifecycleOwner, {
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                    //binding.progressBar.visibility = View.VISIBLE
+                }
+                Resource.Status.SUCCESS -> {
+                    val restaurant = it.data!!.data
+
+                    binding.apply {
+                        restaurantNameTextView.text = restaurant.name
+                    }
+                }
+                Resource.Status.ERROR -> {
+                    //binding.progressBar.visibility = View.GONE
+                    Toast.makeText(
+                        activity,
+                        "Not retrieve restaurant Name",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        })
     }
 
     private fun setOrderNowButtonClickListener(restaurantID: String, localMealList: List<Meal>) {
@@ -92,50 +144,5 @@ class OrdercardFragment : Fragment() {
                 })
 
         }
-    }
-
-    private fun setRestaurantNameTextView(restaurantID: String) {
-        viewModel.getRestaurantByID(restaurantID).observe(viewLifecycleOwner, {
-
-            when (it.status) {
-                Resource.Status.LOADING -> {
-                    //binding.progressBar.visibility = View.VISIBLE
-                }
-                Resource.Status.SUCCESS -> {
-                    val restaurant = it.data!!.data
-
-                    binding.apply {
-                        restaurantNameTextView.text = restaurant.name
-                    }
-                }
-                Resource.Status.ERROR -> {
-                    //binding.progressBar.visibility = View.GONE
-                    Toast.makeText(
-                        activity,
-                        "The restaurant could not be brought",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        })
-    }
-
-    private fun setPriceTextView(localMealList: List<Meal>) {
-        var topPrice = 0f
-        for (item in localMealList) {
-            topPrice = topPrice.plus((item.quantity * item.price.toFloat()))
-        }
-
-        val priceText = topPrice.toString() + " TL"
-        binding.priceTextView.text = priceText
-    }
-
-    private fun setOrdersRecyclerView(ordersList: ArrayList<Meal>) {
-        binding.orderRecyclerView.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-
-        ordercardAdapter.setOrdersList(ordersList)
-
-        binding.orderRecyclerView.adapter = ordercardAdapter
     }
 }

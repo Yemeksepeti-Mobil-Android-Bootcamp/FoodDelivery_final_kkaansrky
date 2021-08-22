@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddelivery.data.entity.restaurant.Restaurant
@@ -16,7 +15,6 @@ import com.example.fooddelivery.databinding.FragmentHomeBinding
 import com.example.fooddelivery.ui.addrestaurant.AddRestaurantFragment
 import com.example.fooddelivery.utils.Resource
 import com.example.fooddelivery.utils.gone
-import com.example.fooddelivery.utils.hide
 import com.example.fooddelivery.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -58,77 +56,9 @@ class HomeFragment : Fragment(),ICategoryOnClick {
         binding.homeCategoriesRecyclerView.adapter = categoriesAdapter
         binding.homeRestaurantRecyclerView.adapter = restaurantAdapter
 
-        //val restaurantsList = viewModel.getTestItemRestaurantList()
         getRestaurantsListFromViewModel()
         setSearchViewListener()
         setRestaurantAddButtonAdminVisibility()
-    }
-
-    private fun setRestaurantAddButtonAdminVisibility() {
-        viewModel.getUser().observe(viewLifecycleOwner,{
-            when (it.status) {
-                Resource.Status.LOADING -> {
-                    //binding.progressBar.show()
-                }
-                Resource.Status.SUCCESS -> {
-                   val role = it.data!!.user.role
-                    if (role == "admin"){
-                        binding.addRestaurantButton.show()
-                        setaddRestaurantAddButton()
-                    }else{
-                        binding.addRestaurantButton.gone()
-                    }
-                }
-                Resource.Status.ERROR ->{
-
-                }
-
-            }
-        })
-    }
-
-    private fun setaddRestaurantAddButton() {
-        binding.addRestaurantButton.setOnClickListener {
-            val dialog = AddRestaurantFragment()
-            dialog.show(requireActivity().supportFragmentManager,"Add Restaurant")
-        }
-    }
-
-    private fun setSearchViewListener() {
-        binding.homeSearchEditText.addTextChangedListener {
-            getSearchRestaurantsResultFromViewModel(it.toString())
-        }
-    }
-
-    override fun categoryOnClick(position: Int) {
-        getRestaurantsOrderByCategory(position)
-    }
-
-    private fun getRestaurantsOrderByCategory(currentPosition: Int) {
-        if (currentPosition == 0){
-            getRestaurantsListFromViewModel()
-        }else {
-            viewModel.getRestaurantByCuisine(viewModel.getAndSetCategoryListFromRestaurants()[currentPosition]).observe(viewLifecycleOwner, { response ->
-                when (response.status) {
-                    Resource.Status.LOADING -> {
-                        //binding.progressBar.show()
-                    }
-                    Resource.Status.SUCCESS -> {
-                        viewModel.restaurantsList = response.data?.restaurantList
-                        setRestaurantsListInAdapter(response.data?.restaurantList as ArrayList<Restaurant>)
-                    }
-                    Resource.Status.ERROR ->{
-
-                    }
-
-                }
-            })
-        }
-    }
-
-    private fun getSearchRestaurantsResultFromViewModel(searchText :String) {
-        val filteredRestaurantsList = viewModel.searchRestaurantsGetFilteredList(searchText)
-        setRestaurantsListInAdapter(filteredRestaurantsList as ArrayList<Restaurant>)
     }
 
     private fun getRestaurantsListFromViewModel() {
@@ -148,7 +78,7 @@ class HomeFragment : Fragment(),ICategoryOnClick {
                 }
                 Resource.Status.ERROR -> {
                     //binding.progressBar.visibility = View.GONE
-                    Toast.makeText(activity, "Kullanıcı getirelemedi", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "Not retrieve restaurants", Toast.LENGTH_SHORT).show()
                 }
             }
         })
@@ -156,6 +86,74 @@ class HomeFragment : Fragment(),ICategoryOnClick {
 
     private fun setCategoriesListInAdapter(categorieslist: ArrayList<String>) {
         categoriesAdapter.setCategoriesList(categorieslist)
+    }
+
+    private fun setSearchViewListener() {
+        binding.homeSearchEditText.addTextChangedListener {
+            getSearchRestaurantsResultFromViewModel(it.toString())
+        }
+    }
+
+    private fun getSearchRestaurantsResultFromViewModel(searchText :String) {
+        val filteredRestaurantsList = viewModel.searchRestaurantsGetFilteredList(searchText)
+        setRestaurantsListInAdapter(filteredRestaurantsList as ArrayList<Restaurant>)
+    }
+
+    private fun setRestaurantAddButtonAdminVisibility() {
+        viewModel.getUser().observe(viewLifecycleOwner,{
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                    binding.progressBar.show()
+                }
+                Resource.Status.SUCCESS -> {
+                    binding.progressBar.gone()
+                   val role = it.data!!.user.role
+                    if (role == "admin"){
+                        binding.addRestaurantButton.show()
+                        setRestaurantAddButton()
+                    }else{
+                        binding.addRestaurantButton.gone()
+                    }
+                }
+                Resource.Status.ERROR ->{
+                    binding.progressBar.gone()
+                }
+            }
+        })
+    }
+
+    private fun setRestaurantAddButton() {
+        binding.addRestaurantButton.setOnClickListener {
+            val dialog = AddRestaurantFragment()
+            dialog.show(requireActivity().supportFragmentManager,"Add Restaurant")
+        }
+    }
+
+    override fun categoryOnClick(position: Int) {
+        getRestaurantsOrderByCategory(position)
+    }
+
+    private fun getRestaurantsOrderByCategory(currentPosition: Int) {
+        //All restaurants index = 0
+        if (currentPosition == 0){
+            getRestaurantsListFromViewModel()
+        }else {
+            viewModel.getRestaurantByCuisine(viewModel.getAndSetCategoryListFromRestaurants()[currentPosition]).observe(viewLifecycleOwner, { response ->
+                when (response.status) {
+                    Resource.Status.LOADING -> {
+                        //binding.progressBar.show()
+                    }
+                    Resource.Status.SUCCESS -> {
+                        viewModel.restaurantsList = response.data?.restaurantList
+                        setRestaurantsListInAdapter(response.data?.restaurantList as ArrayList<Restaurant>)
+                    }
+                    Resource.Status.ERROR ->{
+                        Toast.makeText(activity, "Not retrieve restaurants", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+            })
+        }
     }
 
     private fun setRestaurantsListInAdapter(restaurantsList: ArrayList<Restaurant>){

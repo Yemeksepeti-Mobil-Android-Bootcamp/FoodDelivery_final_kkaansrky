@@ -8,7 +8,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:backgroundTint="@color/purple_200"
+    android:backgroundTint="@color/cardcolor"
     app:cardCornerRadius="8dp">
 
     <LinearLayout
@@ -34,6 +34,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/raleway_bold"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:textStyle="bold"
             tools:text="Ayten Usta" />
 
@@ -42,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textColor="@color/black"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/raleway_bold"
             android:textSize="18sp"

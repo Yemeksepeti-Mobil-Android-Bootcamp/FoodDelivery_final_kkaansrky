@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:backgroundTint="@color/purple_200"
+        android:backgroundTint="@color/orange"
         app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,10 +80,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginVertical="16dp"
                 tools:text="Eskişehir"
                 android:textColor="@color/white"
                 android:textSize="15sp"
+                android:padding="16dp"
                 android:fontFamily="@font/raleway_bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
@@ -117,9 +117,23 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/update_profile"
+                android:id="@+id/lastOrders"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
+                android:textColor="@color/black"
+                android:text="@string/last_orders"
+                android:textSize="20sp" />
+
+            <View
+                style="@style/Divider"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:id="@+id/updateProfile"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textColor="@color/black"
                 android:text="@string/update_profile"
                 android:textSize="20sp" />
 
@@ -131,6 +145,7 @@
 
             <TextView
                 android:id="@+id/logOutButton"
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:text="@string/logout"

@@ -11,6 +11,8 @@ import com.example.fooddelivery.R
 import com.example.fooddelivery.data.entity.user.UserRequest
 import com.example.fooddelivery.databinding.FragmentUpdateUserBinding
 import com.example.fooddelivery.utils.Resource
+import com.example.fooddelivery.utils.gone
+import com.example.fooddelivery.utils.show
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,8 +30,7 @@ class UpdateUserFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentUpdateUserBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,8 +39,43 @@ class UpdateUserFragment : BottomSheetDialogFragment() {
     }
 
     private fun initViews() {
-        setUserDetails()
+        setUserDetailsAndUpdateUI()
         setUpdateButtonClickListener()
+    }
+
+    private fun setUserDetailsAndUpdateUI() {
+        viewModel.getUser().observe(viewLifecycleOwner, {
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                    binding.userNameEditText.gone()
+                    binding.progressBar.show()
+                }
+                Resource.Status.SUCCESS -> {
+                    binding.userNameEditText.show()
+                    binding.progressBar.gone()
+                    val user = it.data!!.user
+
+                    binding.apply {
+                        userNameEditText.setText(user.name)
+                        userEmailEditText.setText(user.email)
+                        userPhoneEditText.setText(user.phone)
+                        userPlaceEditText.setText(user.address)
+                        userImageUrlEditText.setText(user.profileImage)
+                    }
+
+                }
+                Resource.Status.ERROR -> {
+                    binding.userNameEditText.show()
+                    binding.progressBar.gone()
+                    Toast.makeText(
+                        activity,
+                        "get User Error",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                }
+            }
+        })
     }
 
     private fun setUpdateButtonClickListener() {
@@ -57,9 +93,12 @@ class UpdateUserFragment : BottomSheetDialogFragment() {
                     ).observe(viewLifecycleOwner, {
                         when (it.status) {
                             Resource.Status.LOADING -> {
-                                //binding.progressBar.visibility = View.VISIBLE
+                                binding.userNameEditText.gone()
+                                binding.progressBar.show()
                             }
                             Resource.Status.SUCCESS -> {
+                                binding.userNameEditText.show()
+                                binding.progressBar.gone()
                                 Toast.makeText(
                                     activity,
                                     "User Updated",
@@ -70,7 +109,8 @@ class UpdateUserFragment : BottomSheetDialogFragment() {
                                 findNavController().navigate(R.id.action_profileFragment_self)
                             }
                             Resource.Status.ERROR -> {
-                                //binding.progressBar.visibility = View.GONE
+                                binding.userNameEditText.show()
+                                binding.progressBar.gone()
                                 Toast.makeText(
                                     activity,
                                     "User error",
@@ -92,37 +132,6 @@ class UpdateUserFragment : BottomSheetDialogFragment() {
                 else -> !userImageUrlEditText.text.isNullOrEmpty()
             }
         }
-    }
-
-    private fun setUserDetails() {
-        viewModel.getUser().observe(viewLifecycleOwner, {
-            when (it.status) {
-                Resource.Status.LOADING -> {
-                    //binding.progressBar.visibility = View.VISIBLE
-                }
-                Resource.Status.SUCCESS -> {
-                    val user = it.data!!.user
-
-                    binding.apply {
-                        userNameEditText.setText(user.name)
-                        userEmailEditText.setText(user.email)
-                        userPhoneEditText.setText(user.phone)
-                        userPlaceEditText.setText(user.address)
-                        userImageUrlEditText.setText(user.profileImage)
-                    }
-
-                }
-                Resource.Status.ERROR -> {
-                    //binding.progressBar.visibility = View.GONE
-                    Toast.makeText(
-                        activity,
-                        "get User Error",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                }
-            }
-        })
     }
 }
 

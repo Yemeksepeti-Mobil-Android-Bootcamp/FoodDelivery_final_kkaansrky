@@ -6,6 +6,7 @@ import com.example.fooddelivery.data.entity.login.LoginRequest
 import com.example.fooddelivery.data.entity.login.LoginResponse
 import com.example.fooddelivery.data.entity.meal.MealResponse
 import com.example.fooddelivery.data.entity.mealadd.MealAddRequest
+import com.example.fooddelivery.data.entity.order.OrderResponse
 import com.example.fooddelivery.data.entity.register.RegisterRequest
 import com.example.fooddelivery.data.entity.register.RegisterResponse
 import com.example.fooddelivery.data.entity.restaurant.RestaurantListResponse
@@ -52,4 +53,7 @@ interface ApiService {
 
     @GET("a/meal/{id}")
     suspend fun getMealById(@Path("id") id: String): Response<MealResponse>
+
+    @GET("a/order/bulk")
+    suspend fun getOrders(): Response<OrderResponse>
 }

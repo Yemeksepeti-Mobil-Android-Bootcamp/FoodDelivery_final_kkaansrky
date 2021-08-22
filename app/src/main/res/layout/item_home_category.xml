@@ -7,7 +7,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:backgroundTint="@color/purple_200"
+    android:backgroundTint="@color/cardcolor"
     android:padding="16dp"
     android:layout_margin="8dp"
     app:cardCornerRadius="8dp">
@@ -31,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textColor="@color/black"
             android:fontFamily="@font/raleway_bold"
             android:textSize="16sp"
             android:maxLines="1"

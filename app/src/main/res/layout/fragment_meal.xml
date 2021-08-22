@@ -10,7 +10,7 @@
         android:id="@+id/mealCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/purple_200"
+        android:backgroundTint="@color/orange"
         android:padding="16dp"
         app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,8 +30,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:background="@null"
-                android:src="@drawable/temp_meal"
                 android:contentDescription="@string/mealimage"
+                android:src="@drawable/temp_meal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -57,7 +57,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginVertical="16dp"
                 android:layout_marginBottom="16dp"
+                android:paddingHorizontal="16dp"
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -71,9 +73,9 @@
                 style="@style/Divider"
                 android:layout_margin="10dp"
                 android:background="@color/black"
-                app:layout_constraintTop_toBottomOf="@id/mealDescriptionTextView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mealDescriptionTextView" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -86,8 +88,9 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/ic_minus"
-                    android:contentDescription="@string/minusorder" />
+                    android:backgroundTint="@color/black"
+                    android:contentDescription="@string/minusorder"
+                    android:src="@drawable/ic_minus" />
 
                 <TextView
                     android:id="@+id/mealCountTextView"
@@ -100,8 +103,9 @@
                     android:layout_marginBottom="10dp"
                     android:layout_toEndOf="@id/mealMinusButton"
                     android:fontFamily="@font/raleway_bold"
-                    android:textSize="20sp"
-                    android:text="@string/_1" />
+                    android:text="@string/_1"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/countText"
@@ -113,6 +117,7 @@
                     android:layout_toEndOf="@id/mealCountTextView"
                     android:fontFamily="@font/raleway_bold"
                     android:text="@string/piece"
+                    android:textColor="@color/white"
                     android:textSize="20sp" />
 
                 <ImageButton
@@ -121,8 +126,8 @@
                     android:layout_height="50dp"
                     android:layout_toEndOf="@id/countText"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/ic_plus"
-                    android:contentDescription="@string/plus" />
+                    android:contentDescription="@string/plus"
+                    android:src="@drawable/ic_plus" />
 
                 <TextView
                     android:id="@+id/mealPriceTextView"
@@ -134,10 +139,9 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/raleway_bold"
-                    tools:text="20.00 TL"
-                    android:textSize="20sp" />
-
-
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    tools:text="20.00 TL" />
 
 
             </RelativeLayout>
@@ -145,64 +149,85 @@
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintTop_toBottomOf="@id/mealCard">
+        android:layout_height="0dp"
+        android:layout_marginVertical="16dp"
+        app:layout_constraintBottom_toTopOf="@id/mealOrderButton"
+        app:layout_constraintTop_toBottomOf="@id/mealCard"
+        app:layout_constraintVertical_bias="0.516"
+        tools:layout_editor_absoluteX="0dp">
 
-        <RelativeLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/materialCard"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="8dp">
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="8dp">
 
-            <TextView
-                android:id="@+id/materialsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/raleway_bold"
-                android:text="@string/materials"
-                android:textColor="@color/purple_200"
-                android:textSize="22sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/please_select_the_materials_you_want_to_extract"
-                android:layout_marginHorizontal="16dp"
-                android:fontFamily="@font/raleway_bold"
-                android:textSize="11sp"
-                android:layout_alignParentEnd="true"
-                android:layout_toEndOf="@id/materialsText"
-                android:gravity="end"/>
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroup"
-                android:layout_margin="16dp"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/materialsText"/>
+                android:layout_height="match_parent"
+                android:layout_margin="8dp">
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/materialsText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway_bold"
+                    android:text="@string/materials"
+                    android:textColor="@color/orange"
+                    android:textSize="22sp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_toEndOf="@id/materialsText"
+                    android:fontFamily="@font/raleway_bold"
+                    android:gravity="end"
+                    android:text="@string/please_select_the_materials_you_want_to_extract"
+                    android:textColor="@color/black"
+                    android:textSize="11sp" />
 
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/materialsText"
+                    android:layout_margin="16dp" />
 
-    </androidx.cardview.widget.CardView>
+            </RelativeLayout>
 
+        </androidx.cardview.widget.CardView>
+
+    </ScrollView>
 
     <Button
         android:id="@+id/mealOrderButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:background="@drawable/login_custom_button"
         android:text="@string/order_now"
         android:textAllCaps="false"
-        android:layout_margin="16dp"
-        app:backgroundTint="@color/purple_200"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/teal_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.72" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

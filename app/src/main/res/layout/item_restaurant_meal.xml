@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:backgroundTint="@color/purple_200"
+    android:backgroundTint="@color/cardcolor"
     android:padding="16dp"
     android:layout_margin="8dp"
     app:cardCornerRadius="8dp">
@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="8dp"
+            android:textColor="@color/black"
             android:fontFamily="@font/raleway_bold"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -48,11 +49,11 @@
             android:layout_below="@id/mealNameTextView"
             android:layout_alignParentStart="true"
             android:layout_gravity="center"
-            android:layout_margin="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_toStartOf="@id/mealImageView"
             android:fontFamily="@font/raleway_bold"
             android:gravity="start"
@@ -60,27 +61,19 @@
             android:textStyle="bold"
             tools:text="80 gr. %100 dana eti, turşu, özel sos, patates kızartması" />
 
-        <ImageButton
-            android:id="@+id/mealAddButton"
-            android:layout_width="50dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/ic_plus"
-            android:background="@color/teal_700"
-            android:layout_below="@id/mealDescriptionTextView"/>
 
         <TextView
             android:id="@+id/mealPriceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_below="@id/mealDescriptionTextView"
             android:layout_marginHorizontal="16dp"
-            android:layout_toEndOf="@id/mealAddButton"
+            android:layout_marginTop="8dp"
+            android:layout_alignParentStart="true"
             android:fontFamily="@font/raleway_bold"
-            tools:text="20,00 TL"
-            android:textColor="@color/teal_700"
-            android:textSize="18sp" />
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:text="20,00 TL" />
 
 
     </RelativeLayout>

@@ -1,6 +1,5 @@
 package com.example.fooddelivery.data.local
 
-import androidx.room.FtsOptions
 import com.example.fooddelivery.utils.room.LocalOrder
 import com.example.fooddelivery.utils.room.OrderDao
 import javax.inject.Inject

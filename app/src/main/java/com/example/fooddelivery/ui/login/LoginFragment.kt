@@ -13,6 +13,8 @@ import com.example.fooddelivery.R
 import com.example.fooddelivery.databinding.FragmentLoginBinding
 import com.example.fooddelivery.ui.main.MainActivity
 import com.example.fooddelivery.utils.Resource
+import com.example.fooddelivery.utils.hide
+import com.example.fooddelivery.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,15 +38,13 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initViews()
+        initListeners()
     }
 
-    private fun initViews() {
+    private fun initListeners() {
 
         binding.loginButton.setOnClickListener{
-
             postLoginRequest()
-
         }
 
         binding.signUpButton.setOnClickListener {
@@ -55,15 +55,16 @@ class LoginFragment : Fragment() {
 
     private fun postLoginRequest() {
         val email = binding.loginEmailEditText.text.toString()
-        val password = binding.loginPasswordEditText.text.toString()
+        val password = binding.loginPasswordEditText.editText?.text.toString()
 
         viewModel.login(email, password).observe(viewLifecycleOwner, {
             when (it.status) {
                 Resource.Status.LOADING -> {
-                    //_binding.progressBar.show()
+                    binding.loginEmailEditText.hide()
+                    binding.loginPasswordEditText.hide()
+                    binding.progressBar.show()
                 }
                 Resource.Status.SUCCESS -> {
-                    //_binding.progressBar.gone()
 
                     val intent = Intent(requireActivity(), MainActivity::class.java)
                     startActivity(intent)
@@ -71,10 +72,12 @@ class LoginFragment : Fragment() {
 
                 }
                 Resource.Status.ERROR -> {
-                    //_binding.progressBar.gone()
+                    binding.loginEmailEditText.show()
+                    binding.loginPasswordEditText.show()
+                    binding.progressBar.hide()
                     val dialog = AlertDialog.Builder(context)
                         .setTitle("Error")
-                        .setMessage("${it.message}")
+                        .setMessage("Login Failed")
                         .setPositiveButton("ok") { dialog, button ->
                             dialog.dismiss()
                         }

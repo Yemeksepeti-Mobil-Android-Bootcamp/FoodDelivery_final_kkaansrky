@@ -1,8 +1,6 @@
 package com.example.fooddelivery.ui.addrestaurant
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,6 +45,26 @@ class AddRestaurantFragment : BottomSheetDialogFragment() {
         setAddButtonListener()
     }
 
+    private fun initializeCuisineSpinner() {
+        val cuisine = resources.getStringArray(R.array.cuisines)
+        val adapter = ArrayAdapter(
+            activity as AppCompatActivity,
+            R.layout.support_simple_spinner_dropdown_item,
+            cuisine
+        )
+        binding.cuisineSpinner.adapter = adapter
+    }
+
+    private fun initializePaymentMethodsSpinner() {
+        val paymentMethods = resources.getStringArray(R.array.RestaurantPaymentMethods)
+        val adapter = ArrayAdapter(
+            activity as AppCompatActivity,
+            R.layout.support_simple_spinner_dropdown_item,
+            paymentMethods
+        )
+        binding.paymentSpinner.adapter = adapter
+    }
+
     private fun setAddButtonListener() {
         binding.addRestaurantButton.setOnClickListener {
             if(checkNullEditText()){
@@ -84,7 +102,6 @@ class AddRestaurantFragment : BottomSheetDialogFragment() {
                                     "Restaurant Add Error",
                                     Toast.LENGTH_SHORT
                                 ).show()
-                                Log.d(TAG, "setAddButtonListener: "+ it)
                             }
                         }
                     })
@@ -93,10 +110,6 @@ class AddRestaurantFragment : BottomSheetDialogFragment() {
             }
 
         }
-    }
-
-    private fun randomRating(): Int {
-        return ThreadLocalRandom.current().nextInt(5, 10)
     }
 
     private fun checkNullEditText(): Boolean {
@@ -125,24 +138,7 @@ class AddRestaurantFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun initializeCuisineSpinner() {
-        val cuisine = resources.getStringArray(R.array.cuisines)
-        val adapter = ArrayAdapter(
-            activity as AppCompatActivity,
-            R.layout.support_simple_spinner_dropdown_item,
-            cuisine
-        )
-        binding.cuisineSpinner.adapter = adapter
+    private fun randomRating(): Int {
+        return ThreadLocalRandom.current().nextInt(5, 10)
     }
-
-    private fun initializePaymentMethodsSpinner() {
-        val paymentMethods = resources.getStringArray(R.array.RestaurantPaymentMethods)
-        val adapter = ArrayAdapter(
-            activity as AppCompatActivity,
-            R.layout.support_simple_spinner_dropdown_item,
-            paymentMethods
-        )
-        binding.paymentSpinner.adapter = adapter
-    }
-
 }

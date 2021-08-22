@@ -1,9 +1,7 @@
 package com.example.fooddelivery.ui.addmeal
 
-import android.content.ContentValues.TAG
 import android.graphics.Paint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,8 +33,7 @@ class AddMealFragment(restaurantId: String) : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddMealBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,8 +42,34 @@ class AddMealFragment(restaurantId: String) : BottomSheetDialogFragment() {
     }
 
     private fun initViews() {
-        setAddIngredientsOnClickListener()
+        setIngredientsOnClickListener()
         setAddMealOnClickListener()
+    }
+
+    private fun setIngredientsOnClickListener() {
+        binding.apply {
+            addIngredients.setOnClickListener {
+                if (!ingredientsEditText.text.isNullOrEmpty()) {
+                    addIngredients(ingredientsEditText.text.toString())
+                    ingredientsEditText.text.clear()
+                }
+            }
+        }
+    }
+
+    private fun addIngredients(ingredient: String) {
+        val mChip =
+            this.layoutInflater.inflate(R.layout.item_meal_ingredient, null, false) as Chip
+        mChip.setText(ingredient)
+        mChip.setOnClickListener {
+            if (mChip.paintFlags == Paint.STRIKE_THRU_TEXT_FLAG) {
+                mChip.paintFlags = 0
+            } else {
+                mChip.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            }
+        }
+
+        binding.chipGroup.addView(mChip)
     }
 
     private fun setAddMealOnClickListener() {
@@ -54,12 +77,15 @@ class AddMealFragment(restaurantId: String) : BottomSheetDialogFragment() {
         binding.apply {
             addMealButton.setOnClickListener {
                 if (checkEditTextsNull()) {
+
                     val ingredients = ArrayList<String>()
                     chipGroup.children.toList()
                         .filter { !(it as Chip).isChecked }
                         .forEach {
                             ingredients.add((it as Chip).text.toString())
                         }
+
+
                     viewModel.postMeal(
                         restaurantId, MealAddRequest(
                             mealNameEditText.text.toString(),
@@ -93,7 +119,6 @@ class AddMealFragment(restaurantId: String) : BottomSheetDialogFragment() {
                                         "Meal Add Error",
                                         Toast.LENGTH_SHORT
                                     ).show()
-                                    Log.d(TAG, "setAddMealOnClickListener: "+it)
                                 }
                             }
                         })
@@ -101,7 +126,6 @@ class AddMealFragment(restaurantId: String) : BottomSheetDialogFragment() {
             }
         }
     }
-
 
     private fun checkEditTextsNull(): Boolean {
         binding.apply {
@@ -121,31 +145,5 @@ class AddMealFragment(restaurantId: String) : BottomSheetDialogFragment() {
                 else -> chipGroup.childCount != 0
             }
         }
-    }
-
-    private fun setAddIngredientsOnClickListener() {
-        binding.apply {
-            addIngredients.setOnClickListener {
-                if (!ingredientsEditText.text.isNullOrEmpty()) {
-                    addIngredients(ingredientsEditText.text.toString())
-                    ingredientsEditText.text.clear()
-                }
-            }
-        }
-    }
-
-    private fun addIngredients(ingredient: String) {
-        val mChip =
-            this.layoutInflater.inflate(R.layout.item_meal_ingredient, null, false) as Chip
-        mChip.setText(ingredient)
-        mChip.setOnClickListener {
-            if (mChip.paintFlags == Paint.STRIKE_THRU_TEXT_FLAG) {
-                mChip.paintFlags = 0
-            } else {
-                mChip.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-            }
-        }
-
-        binding.chipGroup.addView(mChip)
     }
 }

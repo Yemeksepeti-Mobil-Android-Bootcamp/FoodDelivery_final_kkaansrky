@@ -1,9 +1,7 @@
 package com.example.fooddelivery.ui.profile
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.fooddelivery.R
 import com.example.fooddelivery.data.entity.user.User
 import com.example.fooddelivery.databinding.FragmentProfileBinding
+import com.example.fooddelivery.ui.lastorders.LastOrdersFragment
 import com.example.fooddelivery.ui.splash.SplashActivity
 import com.example.fooddelivery.ui.updateuser.UpdateUserFragment
 import com.example.fooddelivery.utils.Resource
@@ -47,7 +46,10 @@ class ProfileFragment : Fragment() {
 
     private fun initViews() {
         getUser()
+        initListeners()
+    }
 
+    private fun initListeners() {
         binding.logOutButton.setOnClickListener {
             logOutUser()
         }
@@ -55,6 +57,11 @@ class ProfileFragment : Fragment() {
         binding.updateProfile.setOnClickListener {
             val dialog = UpdateUserFragment()
             dialog.show(requireActivity().supportFragmentManager,"Update User")
+        }
+
+        binding.lastOrders.setOnClickListener {
+            val dialog = LastOrdersFragment()
+            dialog.show(requireActivity().supportFragmentManager,"Last Orders")
         }
     }
 
@@ -67,8 +74,6 @@ class ProfileFragment : Fragment() {
 
     private fun getUser() {
         viewModel.getUser().observe(viewLifecycleOwner, {
-
-            Log.d(TAG, "getUser" + (it.data?.success))
 
             when (it.status) {
                 Resource.Status.LOADING -> {
@@ -83,7 +88,7 @@ class ProfileFragment : Fragment() {
                 }
                 Resource.Status.ERROR -> {
                     binding.progressBar.gone()
-                    Toast.makeText(activity, "Kullanıcı getirelemedi", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "Not retrieve user", Toast.LENGTH_SHORT).show()
                 }
             }
         })
@@ -91,7 +96,7 @@ class ProfileFragment : Fragment() {
 
     private fun updateUI(user: User) {
         binding.nameTextView.text = user.name
-        binding.countryTextView.text = user.about
+        binding.countryTextView.text = user.address
         binding.emailTextView.text = user.email
 
         Glide

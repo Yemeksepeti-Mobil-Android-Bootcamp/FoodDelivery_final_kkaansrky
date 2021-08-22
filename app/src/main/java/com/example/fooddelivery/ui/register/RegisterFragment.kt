@@ -12,6 +12,8 @@ import androidx.lifecycle.Observer
 import com.example.fooddelivery.databinding.FragmentRegisterBinding
 import com.example.fooddelivery.ui.main.MainActivity
 import com.example.fooddelivery.utils.Resource
+import com.example.fooddelivery.utils.hide
+import com.example.fooddelivery.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,11 +36,10 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews()
+        initListeners()
     }
 
-    private fun initViews() {
-
+    private fun initListeners() {
 
         binding.registerButton.setOnClickListener {
 
@@ -49,12 +50,15 @@ class RegisterFragment : Fragment() {
     private fun postRegisterRequest() {
         val name = binding.registerNameEditText.text.toString()
         val email = binding.registerEmailEditText.text.toString()
-        val password = binding.registerPasswordEditText.text.toString()
+        val password = binding.registerPasswordEditText.editText?.text.toString()
 
         viewModel.register(name,email, password).observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Resource.Status.LOADING -> {
-                    //_binding.progressBar.show()
+                    binding.registerEmailEditText.hide()
+                    binding.registerPasswordEditText.hide()
+                    binding.registerNameEditText.hide()
+                    binding.progressBar.show()
                 }
                 Resource.Status.SUCCESS -> {
                     //_binding.progressBar.gone()
@@ -64,9 +68,14 @@ class RegisterFragment : Fragment() {
                     requireActivity().finish()
                 }
                 Resource.Status.ERROR -> {
+                    binding.registerEmailEditText.show()
+                    binding.registerPasswordEditText.show()
+                    binding.registerNameEditText.show()
+                    binding.progressBar.hide()
+
                     val dialog = AlertDialog.Builder(context)
                         .setTitle("Error")
-                        .setMessage("${it.message}")
+                        .setMessage("Register Failed")
                         .setPositiveButton("ok") { dialog, button ->
                             dialog.dismiss()
                         }

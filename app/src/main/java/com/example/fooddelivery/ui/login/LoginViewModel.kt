@@ -15,8 +15,10 @@ class LoginViewModel @Inject constructor(
     var savedStateHandle: SavedStateHandle,
     private var apiRepository: ApiRepository
 ): ViewModel(){
+
     fun login(email: String, password: String): LiveData<Resource<LoginResponse>> {
         val request = LoginRequest(email, password)
         return apiRepository.login(request)
     }
+
 }

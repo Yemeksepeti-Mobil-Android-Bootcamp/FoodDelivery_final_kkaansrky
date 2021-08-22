@@ -18,7 +18,7 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     var restaurantsList: List<Restaurant>? = null
-    var categoriesList = arrayListOf<String>("All")
+    var categoriesList = arrayListOf("All")
 
     fun getRestaurantsList(): LiveData<Resource<RestaurantListResponse>> {
         return apiRepository.getRestaurants()
@@ -59,28 +59,5 @@ class HomeViewModel @Inject constructor(
 
     fun getUser(): LiveData<Resource<UserResponse>> {
         return apiRepository.getUser()
-    }
-
-    fun getTestItemCategoriesList(): ArrayList<String> {
-        val categoriesList = ArrayList<String>()
-
-        categoriesList.add("Hamburger")
-        categoriesList.add("Salad")
-        categoriesList.add("Pizza")
-
-        return categoriesList
-    }
-
-    fun getTestItemRestaurantList(): ArrayList<String> {
-        val restaurantList = ArrayList<String>()
-
-        restaurantList.add( "Ayten Usta")
-        restaurantList.add( "Burger King")
-        restaurantList.add( "Pino")
-        restaurantList.add( "Tok-Yat")
-        restaurantList.add( "Elmacıoğlu")
-        restaurantList.add( "Kasaba")
-
-        return restaurantList
     }
 }

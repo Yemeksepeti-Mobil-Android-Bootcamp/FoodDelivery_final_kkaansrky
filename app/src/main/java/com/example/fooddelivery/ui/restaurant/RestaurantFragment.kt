@@ -1,7 +1,6 @@
 package com.example.fooddelivery.ui.restaurant
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,8 +37,7 @@ class RestaurantFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRestaurantBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,36 +48,21 @@ class RestaurantFragment : Fragment() {
     private fun initViews() {
         setAppBarLayoutVisible()
         setRestaurantDetails()
+        setMealAddButtonAdminVisibility()
     }
 
-    private fun setMealAddButtonAdminVisibility(restaurantId : String) {
-        viewModel.getUser().observe(viewLifecycleOwner,{
-            when (it.status) {
-                Resource.Status.LOADING -> {
-                    //binding.progressBar.show()
+    private fun setAppBarLayoutVisible() {
+        binding.appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
+            when {
+                //  State Expanded
+                verticalOffset == 0 -> {
+                    binding.collapsingRelativeLayout.show()
                 }
-                Resource.Status.SUCCESS -> {
-                    val role = it.data!!.user.role
-                    if (role == "admin"){
-                        binding.addMealButton.show()
-                        setMealAddButton(restaurantId)
-                    }else{
-                        binding.addMealButton.gone()
-                    }
+                verticalOffset != 0 -> {
+                    binding.collapsingRelativeLayout.hide()
                 }
-                Resource.Status.ERROR ->{
-
-                }
-
             }
         })
-    }
-
-    private fun setMealAddButton(restaurantId: String) {
-        binding.addMealButton.setOnClickListener {
-            val dialog = AddMealFragment(restaurantId)
-            dialog.show(requireActivity().supportFragmentManager,"Add Meal")
-        }
     }
 
     private fun setRestaurantDetails() {
@@ -95,8 +78,6 @@ class RestaurantFragment : Fragment() {
                         restaurantNameTextView.text = restaurant.name
                         deliveryInfoTextView.text = restaurant.deliveryInfo
 
-                        Log.d("TAG", "setRestaurantDetails: " + restaurant.deliveryInfo)
-
                         deliveryTimeTextView.text = restaurant.deliveryTime
                         minimumDeliveryFeeTextView.text = restaurant.minimumDeliveryFee
                         paymentTextView.text = restaurant.paymentMethods
@@ -108,16 +89,14 @@ class RestaurantFragment : Fragment() {
                             .into(restaurantImageView)
 
                         viewModel.addRestaurantIdInRoom(restaurant.id)
-                        setMealAddButtonAdminVisibility(restaurant.id)
+                        setMealsRecyclerView(restaurant.meals)
                     }
-
-                    setMealsRecyclerView(restaurant.meals)
                 }
                 Resource.Status.ERROR -> {
                     //binding.progressBar.visibility = View.GONE
                     Toast.makeText(
                         activity,
-                        "The restaurant could not be brought",
+                        "Not retrieve restaurants",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -135,21 +114,35 @@ class RestaurantFragment : Fragment() {
         binding.restaurantRecyclerView.adapter = mealsAdapter
     }
 
-    private fun setAppBarLayoutVisible() {
-        binding.appBarLayout.addOnOffsetChangedListener(object :
-            AppBarLayout.OnOffsetChangedListener {
-
-            override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
-                when {
-                    //  State Expanded
-                    verticalOffset == 0 -> {
-                        binding.collapsingRelativeLayout.show()
-                    }
-                    verticalOffset != 0 -> {
-                        binding.collapsingRelativeLayout.hide()
+    private fun setMealAddButtonAdminVisibility() {
+        viewModel.getUser().observe(viewLifecycleOwner,{
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                    binding.progressBar.show()
+                }
+                Resource.Status.SUCCESS -> {
+                    binding.progressBar.gone()
+                    val role = it.data!!.user.role
+                    if (role == "admin"){
+                        binding.addMealButton.show()
+                        setMealAddButton()
+                    }else{
+                        binding.addMealButton.gone()
                     }
                 }
+                Resource.Status.ERROR ->{
+                    binding.progressBar.gone()
+
+                }
+
             }
         })
+    }
+
+    private fun setMealAddButton() {
+        binding.addMealButton.setOnClickListener {
+            val dialog = AddMealFragment(args.restaurantId)
+            dialog.show(requireActivity().supportFragmentManager,"Add Meal")
+        }
     }
 }

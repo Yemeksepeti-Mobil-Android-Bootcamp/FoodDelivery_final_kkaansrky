@@ -19,10 +19,6 @@ class OrdercardViewModel @Inject constructor(
     private var apiRepository: ApiRepository
 ) : ViewModel() {
 
-    fun getOrderFromRoomDb(): List<LocalOrder> {
-        return apiRepository.listOrders()
-    }
-
     fun setOrderInRoomDb(localOrder: LocalOrder) {
         apiRepository.addOrder(localOrder)
     }

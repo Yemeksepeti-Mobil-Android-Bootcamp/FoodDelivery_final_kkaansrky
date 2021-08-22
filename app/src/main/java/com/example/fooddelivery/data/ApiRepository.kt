@@ -84,6 +84,11 @@ class ApiRepository @Inject constructor(
             remoteDataSource.getMealById(id)
         }
 
+    fun getOrders()=
+        performNetworkOperation {
+            remoteDataSource.getOrders()
+        }
+
     fun listOrders():List<LocalOrder> {
         return localDataSource.listLocalOrders()
     }

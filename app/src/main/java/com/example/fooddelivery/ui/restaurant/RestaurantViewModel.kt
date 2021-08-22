@@ -51,42 +51,4 @@ class RestaurantViewModel @Inject constructor(
             return order.meals
         }
     }
-
-    fun getTestItemMealsList(): ArrayList<Meal> {
-        val mealsList = ArrayList<Meal>()
-
-        mealsList.add(
-            Meal(
-                "1",
-                "80 gr. %100 dana eti, turşu, özel sos, patates kızartması",
-                "https://cdn.yemek.com/mncrop/940/625/uploads/2016/05/ev-yapimi-hamburger.jpg",
-                ArrayList(),
-                "Hamburger",
-                "50,00 TL", 1
-            )
-        )
-        mealsList.add(
-            Meal(
-                "2",
-                "80 gr. %100 dana eti, turşu, özel sos, patates kızartması",
-                "https://thehealthyfoodie.com/wp-content/uploads/2013/03/Tuna-and-Grilled-Zucchini-Salad-6.jpg",
-                ArrayList(),
-                "Salad",
-                "25,00 TL", 1
-            )
-        )
-        mealsList.add(
-            Meal(
-                "3",
-                "Mozzarella peyniri, Kaşar peyniri, Sucuk, Sosis, Domates kurusu, Mantar, Mısır",
-                "https://i.nefisyemektarifleri.com/2019/10/04/evde-pizza-tarifi-nasil-yapilir-12.jpg",
-                ArrayList(),
-                "Pizza",
-                "70,00 TL",
-                1
-            )
-        )
-
-        return mealsList
-    }
 }

@@ -54,6 +54,7 @@
     <!-- Profile Strings -->
     <string name="logout">Log Out</string>
     <string name="update_profile">Update Profile</string>
+    <string name="last_orders">Last Orders</string>
 
     <!-- Onboarding Strings -->
     <string name="set_your_delivery_adress">Set your delivery address</string>
@@ -91,6 +92,8 @@
     <string name="user_phone">User Phone</string>
     <string name="user_imageurl">User ImageUrl</string>
     <string name="update">Update</string>
+
+
 
     <string-array name="RestaurantPaymentMethods">
         <item>Online Credit/Bank Card</item>

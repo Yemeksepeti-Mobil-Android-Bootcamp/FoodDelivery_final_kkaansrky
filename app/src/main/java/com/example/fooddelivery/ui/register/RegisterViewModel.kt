@@ -15,8 +15,10 @@ class RegisterViewModel @Inject constructor(
     var savedStateHandle: SavedStateHandle,
     private var apiRepository: ApiRepository
 ): ViewModel() {
+
     fun register(name: String, email: String, password: String): LiveData<Resource<RegisterResponse>> {
         val request = RegisterRequest(name, email, password)
         return apiRepository.register(request)
     }
+
 }

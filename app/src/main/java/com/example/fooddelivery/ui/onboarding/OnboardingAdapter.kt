@@ -8,7 +8,6 @@ private const val FRAGMENT_COUNT = 3
 
 class OnboardingAdapter(requireActivity: FragmentActivity) : FragmentStateAdapter(requireActivity) {
 
-
     override fun getItemCount(): Int = FRAGMENT_COUNT
 
     override fun createFragment(position: Int): Fragment {
