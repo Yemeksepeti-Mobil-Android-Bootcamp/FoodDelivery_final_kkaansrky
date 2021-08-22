@@ -15,15 +15,33 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <TextView
             android:id="@+id/restaurantNameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:textColor="@color/white"
             tools:text="Restaurant Name"
             android:layout_margin="16dp"
             android:fontFamily="@font/raleway_bold"
             android:textSize="25sp"/>
+
+        <Button
+            android:id="@+id/clearButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_marginHorizontal="16dp"
+            android:backgroundTint="@color/teal_200"
+            android:text="Clear"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+        </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView

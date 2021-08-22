@@ -23,6 +23,10 @@ class OrdercardViewModel @Inject constructor(
         apiRepository.addOrder(localOrder)
     }
 
+    fun removeOrderInRoomDb(localOrderId : String) {
+        apiRepository.removeOrder(localOrderId)
+    }
+
     fun getRestaurantByID(restaurantID: String): LiveData<Resource<RestaurantResponse>> {
         return apiRepository.getRestaurantById(restaurantID)
     }

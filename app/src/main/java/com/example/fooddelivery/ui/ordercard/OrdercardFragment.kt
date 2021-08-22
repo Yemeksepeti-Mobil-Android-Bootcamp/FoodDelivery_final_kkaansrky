@@ -41,6 +41,14 @@ class OrdercardFragment : Fragment() {
 
     private fun initViews() {
         checkOrderAndUpdateUI()
+        setClearButtonListener()
+    }
+
+    private fun setClearButtonListener() {
+        binding.clearButton.setOnClickListener {
+            viewModel.removeOrderInRoomDb("1")
+            checkOrderAndUpdateUI()
+        }
     }
 
     private fun checkOrderAndUpdateUI() {
@@ -67,6 +75,12 @@ class OrdercardFragment : Fragment() {
                 "Card Empty",
                 Toast.LENGTH_SHORT
             ).show()
+
+            binding.apply {
+                setOrdersRecyclerView(ArrayList())
+                setPriceTextView(ArrayList())
+                setRestaurantNameTextView("")
+            }
         }
     }
 
@@ -90,28 +104,33 @@ class OrdercardFragment : Fragment() {
     }
 
     private fun setRestaurantNameTextView(restaurantID: String) {
-        viewModel.getRestaurantByID(restaurantID).observe(viewLifecycleOwner, {
-            when (it.status) {
-                Resource.Status.LOADING -> {
-                    //binding.progressBar.visibility = View.VISIBLE
-                }
-                Resource.Status.SUCCESS -> {
-                    val restaurant = it.data!!.data
+        if(restaurantID != ""){
+            viewModel.getRestaurantByID(restaurantID).observe(viewLifecycleOwner, {
+                when (it.status) {
+                    Resource.Status.LOADING -> {
+                        //binding.progressBar.visibility = View.VISIBLE
+                    }
+                    Resource.Status.SUCCESS -> {
+                        val restaurant = it.data!!.data
 
-                    binding.apply {
-                        restaurantNameTextView.text = restaurant.name
+                        binding.apply {
+                            restaurantNameTextView.text = restaurant.name
+                        }
+                    }
+                    Resource.Status.ERROR -> {
+                        //binding.progressBar.visibility = View.GONE
+                        Toast.makeText(
+                            activity,
+                            "Not retrieve restaurant Name",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
-                Resource.Status.ERROR -> {
-                    //binding.progressBar.visibility = View.GONE
-                    Toast.makeText(
-                        activity,
-                        "Not retrieve restaurant Name",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        })
+            })
+        }else {
+            binding.restaurantNameTextView.text = ""
+        }
+
     }
 
     private fun setOrderNowButtonClickListener(restaurantID: String, localMealList: List<Meal>) {

@@ -13,7 +13,7 @@ interface OrderDao {
     @Query("SELECT * FROM localorder WHERE id=:orderID LIMIT 1")
     fun getOrderById(orderID: String): LocalOrder
 
-    @Delete
-    fun removeOrder(order: LocalOrder)
+    @Query("DELETE FROM localorder WHERE id=:localOrderId")
+    fun removeOrder(localOrderId : String)
 
 }

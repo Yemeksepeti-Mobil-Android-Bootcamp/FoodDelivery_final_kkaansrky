@@ -23,8 +23,8 @@ class LocalDataSource @Inject constructor(
         orderDao.addOrder(localOrder)
     }
 
-    fun removeLocalOrder(localOrder: LocalOrder) {
-        orderDao.removeOrder(localOrder)
+    fun removeLocalOrder(localOrderId : String) {
+        orderDao.removeOrder(localOrderId)
     }
 
     fun getLocalOrderById(): LocalOrder {

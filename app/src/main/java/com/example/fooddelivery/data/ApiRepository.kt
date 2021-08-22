@@ -97,8 +97,8 @@ class ApiRepository @Inject constructor(
         localDataSource.addLocalOrder(localOrder)
     }
 
-    fun removeOrder(localOrder : LocalOrder){
-        localDataSource.removeLocalOrder(localOrder)
+    fun removeOrder(localOrderId : String){
+        localDataSource.removeLocalOrder(localOrderId)
     }
 
     fun getLocalOrderById(): LocalOrder {
