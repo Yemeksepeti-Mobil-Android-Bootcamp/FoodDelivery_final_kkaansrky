@@ -5,6 +5,7 @@ import com.example.fooddelivery.data.entity.mealadd.MealAddRequest
 import com.example.fooddelivery.data.entity.order.OrdersRequest
 import com.example.fooddelivery.data.entity.register.RegisterRequest
 import com.example.fooddelivery.data.entity.restaurantadd.RestaurantAddRequest
+import com.example.fooddelivery.data.entity.user.UserRequest
 import com.example.fooddelivery.data.local.LocalDataSource
 import com.example.fooddelivery.data.remote.RemoteDataSource
 import com.example.fooddelivery.utils.performAuthTokenNetworkOperation
@@ -48,6 +49,10 @@ class ApiRepository @Inject constructor(
         performNetworkOperation {
             remoteDataSource.postMeal(restaurantId, request = mealAddRequest)
         }
+
+    fun updateUser(user : UserRequest) = performNetworkOperation {
+        remoteDataSource.updateUser(request = user)
+    }
 
 
     fun logOutUser(){

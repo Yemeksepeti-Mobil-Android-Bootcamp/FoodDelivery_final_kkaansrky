@@ -15,6 +15,7 @@ import com.example.fooddelivery.R
 import com.example.fooddelivery.data.entity.user.User
 import com.example.fooddelivery.databinding.FragmentProfileBinding
 import com.example.fooddelivery.ui.splash.SplashActivity
+import com.example.fooddelivery.ui.updateuser.UpdateUserFragment
 import com.example.fooddelivery.utils.Resource
 import com.example.fooddelivery.utils.gone
 import com.example.fooddelivery.utils.show
@@ -49,6 +50,11 @@ class ProfileFragment : Fragment() {
 
         binding.logOutButton.setOnClickListener {
             logOutUser()
+        }
+
+        binding.updateProfile.setOnClickListener {
+            val dialog = UpdateUserFragment()
+            dialog.show(requireActivity().supportFragmentManager,"Update User")
         }
     }
 

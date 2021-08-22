@@ -8,11 +8,9 @@ data class UserRequest (
     @SerializedName("name")
     val name: String,
     @SerializedName("place")
-    val address: String,
+    val place: String?,
     @SerializedName("phone")
-    val phone: String,
+    val phone: String?,
     @SerializedName("profile_image")
     val profileImage: String? = null,
-    @SerializedName("paymentMethod")
-    val paymentMethod: Number
 )

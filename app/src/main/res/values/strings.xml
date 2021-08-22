@@ -74,6 +74,9 @@
     <string name="restaurant_address">Restaurant Address</string>
     <string name="restaurant_delivery_time">Restaurant Delivery Time</string>
     <string name="restaurant_delivery_info">Restaurant Delivery Info</string>
+
+
+    <!-- Meal Add Strings -->
     <string name="meal_name">Meal Name</string>
     <string name="meal_image_url">Meal Image Url</string>
     <string name="meal_description">Meal Description</string>
@@ -81,7 +84,13 @@
     <string name="meal_ingredients">Meal Ingredients</string>
     <string name="add_meal">Add Meal</string>
 
-    <!-- Meal Add Strings -->
+    <!-- Update User Strings -->
+    <string name="user_email">User Email</string>
+    <string name="user_name">User Name</string>
+    <string name="user_place">User Place</string>
+    <string name="user_phone">User Phone</string>
+    <string name="user_imageurl">User ImageUrl</string>
+    <string name="update">Update</string>
 
     <string-array name="RestaurantPaymentMethods">
         <item>Online Credit/Bank Card</item>

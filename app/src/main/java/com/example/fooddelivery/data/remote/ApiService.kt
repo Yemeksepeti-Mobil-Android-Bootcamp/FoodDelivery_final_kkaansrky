@@ -11,12 +11,10 @@ import com.example.fooddelivery.data.entity.register.RegisterResponse
 import com.example.fooddelivery.data.entity.restaurant.RestaurantListResponse
 import com.example.fooddelivery.data.entity.restaurant.RestaurantResponse
 import com.example.fooddelivery.data.entity.restaurantadd.RestaurantAddRequest
+import com.example.fooddelivery.data.entity.user.UserRequest
 import com.example.fooddelivery.data.entity.user.UserResponse
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface ApiService {
     @POST("auth/login")
@@ -36,6 +34,9 @@ interface ApiService {
         @Path("restaurantId") restaurantId: String,
         @Body request: MealAddRequest
     ): Response<SuccessResponse>
+
+    @PUT("auth/updateDetails")
+    suspend fun updateUser(@Body request : UserRequest) : Response<UserResponse>
 
     @GET("auth/profile")
     suspend fun getUser() : Response<UserResponse>
