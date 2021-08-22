@@ -23,6 +23,7 @@ This project is a simple food ordering application. I learned the most used libr
 * Splash Screen
 * Onboarding Screens
 * Login Screen
+* Register Screen
 * Home Screen
 * Restaurant Detail Screen
 * Meal Detail Screen
