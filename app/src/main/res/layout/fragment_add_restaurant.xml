@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        tools:context=".ui.home.AddWordFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/restaurantNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/login_custom_input"
+                android:hint="@string/restaurant_name"
+                android:inputType="text"
+                android:autofillHints="true"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"/>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/cuisineSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginVertical="16dp"
+                android:layout_weight="6"
+                android:gravity="center"/>
+
+            <EditText
+                android:id="@+id/restaurantDeliveryInfoEditText"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/login_custom_input"
+                android:hint="@string/restaurant_delivery_info"
+                android:inputType="text"
+                android:autofillHints="true"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"/>
+            <EditText
+                android:id="@+id/restaurantDeliveryTimeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/login_custom_input"
+                android:layout_marginVertical="16dp"
+                android:hint="@string/restaurant_delivery_time"
+                android:inputType="text"
+                android:autofillHints="true"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"/>
+
+            <EditText
+                android:id="@+id/restaurantAddressEditText"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/login_custom_input"
+                android:hint="@string/restaurant_address"
+                android:inputType="text"
+                android:autofillHints="true"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"/>
+
+            <EditText
+                android:id="@+id/restaurantDistrictEditText"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/login_custom_input"
+                android:layout_marginVertical="16dp"
+                android:hint="@string/restaurant_district"
+                android:inputType="text"
+                android:autofillHints="true"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"/>
+            <EditText
+                android:id="@+id/restaurantMinDeliveryEditText"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/login_custom_input"
+                android:hint="@string/restaurant_min_delivery_fee"
+                android:inputType="number"
+                android:autofillHints="true"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"/>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/paymentSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginVertical="16dp"
+                android:layout_weight="6"
+                android:gravity="center"/>
+
+            <EditText
+                android:id="@+id/restaurantImageUrlEditText"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/login_custom_input"
+                android:hint="@string/restaurant_image_url"
+                android:autofillHints="true"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/addRestaurantButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/add_restaurant" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -125,6 +125,12 @@ class MealFragment : Fragment() {
                             }
 
                             viewModel.setOrderInRoomDb(localOrder)
+
+                            Toast.makeText(
+                                activity,
+                                "Added Meal to Card",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
                 }

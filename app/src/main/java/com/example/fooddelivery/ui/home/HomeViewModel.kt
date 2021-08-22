@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.fooddelivery.data.ApiRepository
 import com.example.fooddelivery.data.entity.restaurant.Restaurant
 import com.example.fooddelivery.data.entity.restaurant.RestaurantListResponse
+import com.example.fooddelivery.data.entity.user.UserResponse
 import com.example.fooddelivery.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -54,6 +55,10 @@ class HomeViewModel @Inject constructor(
             }
         }
         return filteredRestaurantList
+    }
+
+    fun getUser(): LiveData<Resource<UserResponse>> {
+        return apiRepository.getUser()
     }
 
     fun getTestItemCategoriesList(): ArrayList<String> {

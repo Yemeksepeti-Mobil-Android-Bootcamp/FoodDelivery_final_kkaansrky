@@ -3,6 +3,7 @@ package com.example.fooddelivery.data
 import com.example.fooddelivery.data.entity.login.LoginRequest
 import com.example.fooddelivery.data.entity.order.OrdersRequest
 import com.example.fooddelivery.data.entity.register.RegisterRequest
+import com.example.fooddelivery.data.entity.restaurantadd.RestaurantAddRequest
 import com.example.fooddelivery.data.local.LocalDataSource
 import com.example.fooddelivery.data.remote.RemoteDataSource
 import com.example.fooddelivery.utils.performAuthTokenNetworkOperation
@@ -35,6 +36,11 @@ class ApiRepository @Inject constructor(
     fun postOrders(request: OrdersRequest) =
         performNetworkOperation {
             remoteDataSource.postOrders(request)
+        }
+
+    fun postRestaurant(restaurantAddRequest: RestaurantAddRequest) =
+        performNetworkOperation {
+            remoteDataSource.postRestaurant(request = restaurantAddRequest)
         }
 
     fun logOutUser(){

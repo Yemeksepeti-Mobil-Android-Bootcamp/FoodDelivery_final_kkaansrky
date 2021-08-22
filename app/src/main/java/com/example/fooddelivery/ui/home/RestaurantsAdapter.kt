@@ -24,6 +24,7 @@ class RestaurantsAdapter: RecyclerView.Adapter<RestaurantsAdapter.RestaurantsVie
 
         holder.binding.apply {
             restaurantTextView.text=restaurant.name
+            restaurantAdressTextView.text = restaurant.district
             Glide
                 .with(holder.itemView.context)
                 .load(restaurant.image)

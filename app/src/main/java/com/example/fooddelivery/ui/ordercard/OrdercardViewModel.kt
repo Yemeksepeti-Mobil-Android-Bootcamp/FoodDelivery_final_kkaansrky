@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.fooddelivery.data.ApiRepository
+import com.example.fooddelivery.data.entity.SuccessResponse
 import com.example.fooddelivery.data.entity.meal.Meal
 import com.example.fooddelivery.data.entity.order.OrdersRequest
-import com.example.fooddelivery.data.entity.order.OrdersResponse
 import com.example.fooddelivery.data.entity.restaurant.RestaurantResponse
 import com.example.fooddelivery.utils.Resource
 import com.example.fooddelivery.utils.room.LocalOrder
@@ -38,7 +38,7 @@ class OrdercardViewModel @Inject constructor(
     fun setOrdersRequestObjectAndPost(
         restaurantID: String,
         meals: List<Meal>
-    ): LiveData<Resource<OrdersResponse>> {
+    ): LiveData<Resource<SuccessResponse>> {
         val mealIdList = getMealIdList(meals)
         return apiRepository.postOrders(OrdersRequest(restaurantID, mealIdList))
     }

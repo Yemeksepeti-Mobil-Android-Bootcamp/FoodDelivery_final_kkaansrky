@@ -1,14 +1,15 @@
 package com.example.fooddelivery.data.remote
 
+import com.example.fooddelivery.data.entity.SuccessResponse
 import com.example.fooddelivery.data.entity.order.OrdersRequest
 import com.example.fooddelivery.data.entity.login.LoginRequest
 import com.example.fooddelivery.data.entity.login.LoginResponse
 import com.example.fooddelivery.data.entity.meal.MealResponse
-import com.example.fooddelivery.data.entity.order.OrdersResponse
 import com.example.fooddelivery.data.entity.register.RegisterRequest
 import com.example.fooddelivery.data.entity.register.RegisterResponse
 import com.example.fooddelivery.data.entity.restaurant.RestaurantListResponse
 import com.example.fooddelivery.data.entity.restaurant.RestaurantResponse
+import com.example.fooddelivery.data.entity.restaurantadd.RestaurantAddRequest
 import com.example.fooddelivery.data.entity.user.UserResponse
 import retrofit2.Response
 import retrofit2.http.Body
@@ -24,7 +25,10 @@ interface ApiService {
     suspend fun register(@Body request: RegisterRequest): Response<RegisterResponse>
 
     @POST("a/order/bulk")
-    suspend fun postOrders(@Body request: OrdersRequest): Response<OrdersResponse>
+    suspend fun postOrders(@Body request: OrdersRequest): Response<SuccessResponse>
+
+    @POST("a/restaurant")
+    suspend fun postRestaurant(@Body request: RestaurantAddRequest): Response<SuccessResponse>
 
     @GET("auth/profile")
     suspend fun getUser() : Response<UserResponse>
