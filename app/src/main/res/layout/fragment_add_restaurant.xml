@@ -108,11 +108,13 @@
                 android:paddingEnd="12dp"
                 android:inputType="text" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/addRestaurantButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="16dp"
+                android:background="@drawable/login_custom_button"
+                android:backgroundTint="@color/orange"
                 android:layout_marginTop="16dp"
                 android:text="@string/add_restaurant" />
         </LinearLayout>

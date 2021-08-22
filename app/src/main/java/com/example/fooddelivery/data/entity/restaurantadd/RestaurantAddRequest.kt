@@ -20,7 +20,7 @@ data class RestaurantAddRequest(
     @SerializedName("paymentMethods")
     val paymentMethods: String,
     @SerializedName("rating")
-    val rating: Double,
+    val rating: Int,
     @SerializedName("imageUrl")
     val imageUrl: String
 )

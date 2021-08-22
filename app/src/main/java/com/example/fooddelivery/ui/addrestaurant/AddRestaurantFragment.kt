@@ -95,28 +95,32 @@ class AddRestaurantFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun randomRating(): Double {
-        return ThreadLocalRandom.current().nextDouble(5.0, 10.0)
+    private fun randomRating(): Int {
+        return ThreadLocalRandom.current().nextInt(5, 10)
     }
 
     private fun checkNullEditText(): Boolean {
         binding.apply {
-            if (restaurantNameEditText.text.isNullOrEmpty()){
-                return false
-            }else if (restaurantAddressEditText.text.isNullOrEmpty()){
-                return false
-            }else if (restaurantDeliveryInfoEditText.text.isNullOrEmpty()){
-                return false
-            }else if (restaurantDeliveryTimeEditText.text.isNullOrEmpty()){
-                return false
-            }else if (restaurantDistrictEditText.text.isNullOrEmpty()){
-                return false
-            }else if (restaurantMinDeliveryEditText.text.isNullOrEmpty()){
-                return false
-            }else if (restaurantImageUrlEditText.text.isNullOrEmpty()){
-                return false
-            }else{
-                return true
+            return when {
+                restaurantNameEditText.text.isNullOrEmpty() -> {
+                    false
+                }
+                restaurantAddressEditText.text.isNullOrEmpty() -> {
+                    false
+                }
+                restaurantDeliveryInfoEditText.text.isNullOrEmpty() -> {
+                    false
+                }
+                restaurantDeliveryTimeEditText.text.isNullOrEmpty() -> {
+                    false
+                }
+                restaurantDistrictEditText.text.isNullOrEmpty() -> {
+                    false
+                }
+                restaurantMinDeliveryEditText.text.isNullOrEmpty() -> {
+                    false
+                }
+                else -> !restaurantImageUrlEditText.text.isNullOrEmpty()
             }
         }
     }

@@ -5,6 +5,7 @@ import com.example.fooddelivery.data.entity.order.OrdersRequest
 import com.example.fooddelivery.data.entity.login.LoginRequest
 import com.example.fooddelivery.data.entity.login.LoginResponse
 import com.example.fooddelivery.data.entity.meal.MealResponse
+import com.example.fooddelivery.data.entity.mealadd.MealAddRequest
 import com.example.fooddelivery.data.entity.register.RegisterRequest
 import com.example.fooddelivery.data.entity.register.RegisterResponse
 import com.example.fooddelivery.data.entity.restaurant.RestaurantListResponse
@@ -29,6 +30,12 @@ interface ApiService {
 
     @POST("a/restaurant")
     suspend fun postRestaurant(@Body request: RestaurantAddRequest): Response<SuccessResponse>
+
+    @POST("a/restaurant/{restaurantId}/meal")
+    suspend fun postMeal(
+        @Path("restaurantId") restaurantId: String,
+        @Body request: MealAddRequest
+    ): Response<SuccessResponse>
 
     @GET("auth/profile")
     suspend fun getUser() : Response<UserResponse>

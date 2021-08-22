@@ -28,7 +28,7 @@ class RestaurantsAdapter: RecyclerView.Adapter<RestaurantsAdapter.RestaurantsVie
             Glide
                 .with(holder.itemView.context)
                 .load(restaurant.image)
-                .placeholder(R.drawable.temp_meal)
+                .placeholder(R.drawable.ic_restaurant_temp_photo)
                 .into(restaurantImageView)
         }
 

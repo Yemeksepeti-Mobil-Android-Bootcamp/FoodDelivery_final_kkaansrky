@@ -35,9 +35,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_margin="8dp"
             android:fontFamily="@font/raleway_bold"
             android:textSize="16sp"
-            android:layout_margin="8dp"
             android:textStyle="bold"
             tools:text="Hamburger" />
 
@@ -46,13 +46,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/mealNameTextView"
+            android:layout_alignParentStart="true"
             android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_margin="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:layout_toStartOf="@id/mealImageView"
             android:fontFamily="@font/raleway_bold"
+            android:gravity="start"
             android:textSize="16sp"
             android:textStyle="bold"
             tools:text="80 gr. %100 dana eti, turşu, özel sos, patates kızartması" />
@@ -61,6 +64,7 @@
             android:id="@+id/mealAddButton"
             android:layout_width="50dp"
             android:layout_height="25dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/ic_plus"
             android:background="@color/teal_700"
             android:layout_below="@id/mealDescriptionTextView"/>
@@ -69,11 +73,12 @@
             android:id="@+id/mealPriceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_below="@id/mealDescriptionTextView"
             android:layout_marginHorizontal="16dp"
             android:layout_toEndOf="@id/mealAddButton"
             android:fontFamily="@font/raleway_bold"
-            android:text="20,00 TL"
+            tools:text="20,00 TL"
             android:textColor="@color/teal_700"
             android:textSize="18sp" />
 

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.fooddelivery.data.ApiRepository
 import com.example.fooddelivery.data.entity.meal.Meal
 import com.example.fooddelivery.data.entity.restaurant.RestaurantResponse
+import com.example.fooddelivery.data.entity.user.UserResponse
 import com.example.fooddelivery.utils.Resource
 import com.example.fooddelivery.utils.room.LocalOrder
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,6 +24,10 @@ class RestaurantViewModel @Inject constructor(
     fun addRestaurantIdInRoom(restaurantID: String) {
         val mealList = checkRestaurantId(restaurantID)
         apiRepository.addOrder(LocalOrder("1", restaurantID, mealList))
+    }
+
+    fun getUser(): LiveData<Resource<UserResponse>> {
+        return apiRepository.getUser()
     }
 
     private fun checkRestaurantId(restaurantID: String): List<Meal> {
