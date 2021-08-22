@@ -17,6 +17,7 @@ This project is a simple food ordering application. I learned the most used libr
 * RecyclerView
 * Fragments
 * Room
+* JWT
 
 ## Project Structure
 ------
@@ -39,6 +40,8 @@ This project is a simple food ordering application. I learned the most used libr
 
 #### Splash, Onboarding, Login Screens
 -----
+
+* When the user logs in, the next login is done automatically if the token has not expired.
 
 <img src="./ss/splash.gif" height="500px" width="250px"/>
 
