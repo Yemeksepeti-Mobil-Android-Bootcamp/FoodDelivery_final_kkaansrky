@@ -1,0 +1,63 @@
+Index: app/src/main/java/com/example/fooddelivery/data/entity/user/UserRequest.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.fooddelivery.data.entity.user\r\n\r\nimport com.google.gson.annotations.SerializedName\r\n\r\ndata class UserRequest (\r\n    @SerializedName(\"email\")\r\n    val email: String,\r\n    @SerializedName(\"name\")\r\n    val name: String,\r\n    @SerializedName(\"place\")\r\n    val address: String,\r\n    @SerializedName(\"phone\")\r\n    val phone: String,\r\n    @SerializedName(\"profile_image\")\r\n    val profileImage: String? = null,\r\n    @SerializedName(\"paymentMethod\")\r\n    val paymentMethod: Number\r\n)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/fooddelivery/data/entity/user/UserRequest.kt b/app/src/main/java/com/example/fooddelivery/data/entity/user/UserRequest.kt
+--- a/app/src/main/java/com/example/fooddelivery/data/entity/user/UserRequest.kt	(revision 15898c6af544ca1b70adcefdcfeb0115cf03b0e2)
++++ b/app/src/main/java/com/example/fooddelivery/data/entity/user/UserRequest.kt	(date 1629628377871)
+@@ -13,6 +13,4 @@
+     val phone: String,
+     @SerializedName("profile_image")
+     val profileImage: String? = null,
+-    @SerializedName("paymentMethod")
+-    val paymentMethod: Number
+ )
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_update_user.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_update_user.xml b/app/src/main/res/layout/fragment_update_user.xml
+new file mode 100644
+--- /dev/null	(date 1629628377879)
++++ b/app/src/main/res/layout/fragment_update_user.xml	(date 1629628377879)
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="utf-8"?>
++<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".ui.updateuser.UpdateUserFragment">
++
++    <!-- TODO: Update blank fragment layout -->
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:text="@string/hello_blank_fragment" />
++
++</FrameLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/fooddelivery/ui/updateuser/UpdateUserFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/fooddelivery/ui/updateuser/UpdateUserFragment.kt b/app/src/main/java/com/example/fooddelivery/ui/updateuser/UpdateUserFragment.kt
+new file mode 100644
+--- /dev/null	(date 1629628377883)
++++ b/app/src/main/java/com/example/fooddelivery/ui/updateuser/UpdateUserFragment.kt	(date 1629628377883)
+@@ -0,0 +1,10 @@
++package com.example.fooddelivery.ui.updateuser
++
++import android.os.Bundle
++import androidx.fragment.app.Fragment
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
++import com.example.fooddelivery.R
++
++class UpdateUserFragment : Fragment() {

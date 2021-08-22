@@ -1,0 +1,72 @@
+Index: app/src/main/res/navigation/splash_nav.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<navigation xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/splash_nav.xml\"\r\n    app:startDestination=\"@id/splashFragment\">\r\n\r\n    <fragment\r\n        android:id=\"@+id/loginFragment\"\r\n        android:name=\"com.example.fooddelivery.ui.login.LoginFragment\"\r\n        android:label=\"fragment_login\"\r\n        tools:layout=\"@layout/fragment_login\" />\r\n    <fragment\r\n        android:id=\"@+id/splashFragment\"\r\n        android:name=\"com.example.fooddelivery.ui.splash.SplashFragment\"\r\n        android:label=\"SplashFragment\" >\r\n        <action\r\n            android:id=\"@+id/action_splashFragment_to_loginFragment\"\r\n            app:destination=\"@id/loginFragment\" />\r\n    </fragment>\r\n</navigation>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/navigation/splash_nav.xml b/app/src/main/res/navigation/splash_nav.xml
+--- a/app/src/main/res/navigation/splash_nav.xml	(revision 45441aa1680fdaae2ec22c7fdde3d3b6f66a6081)
++++ b/app/src/main/res/navigation/splash_nav.xml	(date 1629124932871)
+@@ -9,7 +9,11 @@
+         android:id="@+id/loginFragment"
+         android:name="com.example.fooddelivery.ui.login.LoginFragment"
+         android:label="fragment_login"
+-        tools:layout="@layout/fragment_login" />
++        tools:layout="@layout/fragment_login" >
++        <action
++            android:id="@+id/action_loginFragment_to_registerFragment"
++            app:destination="@id/registerFragment" />
++    </fragment>
+     <fragment
+         android:id="@+id/splashFragment"
+         android:name="com.example.fooddelivery.ui.splash.SplashFragment"
+@@ -18,4 +22,8 @@
+             android:id="@+id/action_splashFragment_to_loginFragment"
+             app:destination="@id/loginFragment" />
+     </fragment>
++    <fragment
++        android:id="@+id/registerFragment"
++        android:name="com.example.fooddelivery.ui.register.RegisterFragment"
++        android:label="RegisterFragment" />
+ </navigation>
+\ No newline at end of file
+Index: app/src/main/java/com/example/fooddelivery/ui/login/LoginFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.fooddelivery.ui.login\r\n\r\nimport android.os.Bundle\r\nimport androidx.fragment.app.Fragment\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport com.example.fooddelivery.databinding.FragmentLoginBinding\r\nimport dagger.hilt.android.AndroidEntryPoint\r\n\r\n@AndroidEntryPoint\r\nclass LoginFragment : Fragment() {\r\n    private var _binding: FragmentLoginBinding? = null\r\n\r\n    private val binding get() = _binding!!\r\n\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater,\r\n        container: ViewGroup?,\r\n        savedInstanceState: Bundle?\r\n    ): View {\r\n        _binding = FragmentLoginBinding.inflate(inflater, container, false)\r\n        val view = binding.root\r\n        return view\r\n    }\r\n\r\n    override fun onDestroyView() {\r\n        super.onDestroyView()\r\n        _binding = null\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/fooddelivery/ui/login/LoginFragment.kt b/app/src/main/java/com/example/fooddelivery/ui/login/LoginFragment.kt
+--- a/app/src/main/java/com/example/fooddelivery/ui/login/LoginFragment.kt	(revision 45441aa1680fdaae2ec22c7fdde3d3b6f66a6081)
++++ b/app/src/main/java/com/example/fooddelivery/ui/login/LoginFragment.kt	(date 1629125018853)
+@@ -5,6 +5,8 @@
+ import android.view.LayoutInflater
+ import android.view.View
+ import android.view.ViewGroup
++import androidx.navigation.fragment.findNavController
++import com.example.fooddelivery.R
+ import com.example.fooddelivery.databinding.FragmentLoginBinding
+ import dagger.hilt.android.AndroidEntryPoint
+ 
+@@ -21,9 +23,19 @@
+     ): View {
+         _binding = FragmentLoginBinding.inflate(inflater, container, false)
+         val view = binding.root
++
++        initViews()
++
+         return view
+     }
+ 
++    private fun initViews() {
++        binding.login.setOnClickListener {
++            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
++        }
++
++    }
++
+     override fun onDestroyView() {
+         super.onDestroyView()
+         _binding = null
