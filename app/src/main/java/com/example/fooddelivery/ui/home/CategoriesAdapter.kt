@@ -23,6 +23,13 @@ class CategoriesAdapter: RecyclerView.Adapter<CategoriesViewHolder>() {
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
         val category = categoriesList[position]
         holder.binding.categoryTextView.text = category
+        if (selectedItem == position){
+            holder.binding.apply {
+                itemCardView.setCardBackgroundColor(itemCardView.context.getColor(R.color.orange))
+            }
+        }else {
+            holder.binding.itemCardView.setCardBackgroundColor(holder.binding.itemCardView.context.getColor(R.color.cardcolor))
+        }
 
         with(category.lowercase()){
             when{
@@ -34,12 +41,11 @@ class CategoriesAdapter: RecyclerView.Adapter<CategoriesViewHolder>() {
         }
 
         holder.binding.itemCardView.setOnClickListener {
-            selectedItem= holder.adapterPosition
+            selectedItem = holder.adapterPosition
 
             listener?.let {
                 listener?.categoryOnClick(position)
             }
-
             notifyDataSetChanged()
         }
     }
