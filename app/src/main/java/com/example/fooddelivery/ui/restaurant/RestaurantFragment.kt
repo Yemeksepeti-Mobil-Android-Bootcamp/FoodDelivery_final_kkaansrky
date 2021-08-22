@@ -14,7 +14,9 @@ import com.bumptech.glide.Glide
 import com.example.fooddelivery.R
 import com.example.fooddelivery.data.entity.meal.Meal
 import com.example.fooddelivery.databinding.FragmentRestaurantBinding
+import com.example.fooddelivery.ui.addmeal.AddMealFragment
 import com.example.fooddelivery.utils.Resource
+import com.example.fooddelivery.utils.gone
 import com.example.fooddelivery.utils.hide
 import com.example.fooddelivery.utils.show
 import com.google.android.material.appbar.AppBarLayout
@@ -48,7 +50,36 @@ class RestaurantFragment : Fragment() {
     private fun initViews() {
         setAppBarLayoutVisible()
         setRestaurantDetails()
+    }
 
+    private fun setMealAddButtonAdminVisibility(restaurantId : String) {
+        viewModel.getUser().observe(viewLifecycleOwner,{
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                    //binding.progressBar.show()
+                }
+                Resource.Status.SUCCESS -> {
+                    val role = it.data!!.user.role
+                    if (role == "admin"){
+                        binding.addMealButton.show()
+                        setMealAddButton(restaurantId)
+                    }else{
+                        binding.addMealButton.gone()
+                    }
+                }
+                Resource.Status.ERROR ->{
+
+                }
+
+            }
+        })
+    }
+
+    private fun setMealAddButton(restaurantId: String) {
+        binding.addMealButton.setOnClickListener {
+            val dialog = AddMealFragment(restaurantId)
+            dialog.show(requireActivity().supportFragmentManager,"Add Meal")
+        }
     }
 
     private fun setRestaurantDetails() {
@@ -73,10 +104,11 @@ class RestaurantFragment : Fragment() {
                         Glide
                             .with(requireContext())
                             .load(restaurant.image)
-                            .placeholder(R.drawable.temp_meal)
+                            .placeholder(R.drawable.ic_restaurant_temp_photo)
                             .into(restaurantImageView)
 
                         viewModel.addRestaurantIdInRoom(restaurant.id)
+                        setMealAddButtonAdminVisibility(restaurant.id)
                     }
 
                     setMealsRecyclerView(restaurant.meals)
