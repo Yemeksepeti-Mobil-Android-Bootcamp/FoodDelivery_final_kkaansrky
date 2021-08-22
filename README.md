@@ -89,4 +89,9 @@ This project is a simple food ordering application. I learned the most used libr
 <div>
 <img src="./ss/addRestaurant.gif" height="500px" width="250px"/>
 <img src="./ss/addMeal.gif" height="500px" width="250px"/>
-</div>
+</div>## Acknowledgments
+
+- Kodluyoruz Yemeksepeti Android Bootcamp
+- Patika.dev 
+- [Erol Kaftanoğlu](https://github.com/erolkaftanoglu)
+- [Tunahan Aydınoğlu](https://github.com/TunahanAydinoglu) for REST APIs
