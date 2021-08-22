@@ -11,7 +11,7 @@
     android:layout_margin="8dp"
     app:cardCornerRadius="8dp">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="16dp">
@@ -27,22 +27,28 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:contentDescription="@string/categorieimage"
-            android:src="@drawable/temp_meal" />
+            android:src="@drawable/temp_meal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
 
         <TextView
             android:id="@+id/mealNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_margin="8dp"
             android:fontFamily="@font/raleway_bold"
             android:textSize="16sp"
-            android:layout_margin="8dp"
             android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/mealImageView"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Hamburger" />
 
         <TextView
             android:id="@+id/mealDescriptionTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/mealNameTextView"
             android:layout_gravity="center"
@@ -54,33 +60,42 @@
             android:fontFamily="@font/raleway_bold"
             android:textSize="16sp"
             android:textStyle="bold"
-            tools:text="80 gr. %100 dana eti, turşu, özel sos, patates kızartması" />
+            tools:text="80 gr. %100 dana eti, turşu, özel sos, patates kızartması"
+            app:layout_constraintTop_toBottomOf="@id/mealNameTextView"
+            app:layout_constraintRight_toLeftOf="@id/mealImageView"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
 
         <TextView
             android:id="@+id/mealCountTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/mealDescriptionTextView"
-            android:layout_marginHorizontal="16dp"
             android:fontFamily="@font/raleway_bold"
             android:textColor="@color/teal_200"
             android:textSize="18sp"
-            tools:text="1 quantity" />
+            tools:text="1 quantity"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mealDescriptionTextView"
+            app:layout_constraintRight_toLeftOf="@id/mealPriceTextView"/>
 
         <TextView
             android:id="@+id/mealPriceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/mealDescriptionTextView"
             android:layout_alignParentEnd="true"
-            android:layout_marginHorizontal="16dp"
+            android:layout_margin="8dp"
             android:fontFamily="@font/raleway_bold"
             android:textColor="@color/teal_200"
             android:textSize="18sp"
-            tools:text="20,00 TL" />
+            tools:text="20,00 TL"
+            app:layout_constraintLeft_toRightOf="@id/mealCountTextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/mealImageView"
+            app:layout_constraintTop_toBottomOf="@id/mealDescriptionTextView"/>
 
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
